@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>비용·제3자 리스크 · 신윤상 Portfolio</title>
+<meta name="description" content="신윤상 — SRE · Cloud Native &amp; Security Architect 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-soft: #131a23;
+  --bg-card: #161d27;
+  --line: #232c38;
+  --line-soft: #1c242f;
+  --fg: #d8dee6;
+  --fg-dim: #8b97a6;
+  --fg-faint: #616d7c;
+  --accent: #58a6ff;
+  --accent-dim: #2f5f96;
+  --green: #4ec9a5;
+  --amber: #d4a548;
+  --head: #f0f4f8;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff; --bg-soft: #f6f8fa; --bg-card: #ffffff;
+    --line: #d5dce4; --line-soft: #e6ebf0;
+    --fg: #27313d; --fg-dim: #5c6773; --fg-faint: #8a939e;
+    --accent: #0a5fc4; --accent-dim: #9dbde4;
+    --green: #17795e; --amber: #8a6416; --head: #10233a;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { display: flex; max-width: 1180px; margin: 0 auto; gap: 0; }
+
+/* ---------- sidebar ---------- */
+aside {
+  width: 232px; flex: 0 0 232px; border-right: 1px solid var(--line);
+  padding: 34px 20px 60px 16px; position: sticky; top: 0; height: 100vh;
+  overflow-y: auto;
+}
+aside .brand { display: block; text-decoration: none; margin-bottom: 26px; }
+aside .brand b { display: block; font-size: 17px; font-weight: 700; color: var(--head); letter-spacing: -0.2px; }
+aside .brand span { display: block; font-size: 11.5px; color: var(--fg-faint); margin-top: 2px; letter-spacing: 0.2px; }
+aside .navlabel {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.1px;
+  color: var(--fg-faint); margin: 22px 0 7px 10px; font-weight: 700;
+}
+aside .navsub {
+  font-size: 11px; color: var(--fg-faint); margin: 13px 0 4px 10px; font-weight: 600;
+  padding-top: 8px; border-top: 1px dashed var(--line-soft);
+}
+aside .navsub:first-of-type { border-top: 0; padding-top: 0; margin-top: 4px; }
+aside a.nav {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 6px;
+  padding: 6px 10px; border-radius: 6px; text-decoration: none;
+  color: var(--fg-dim); font-size: 13.5px; line-height: 1.4;
+}
+aside a.nav em { font-style: normal; font-size: 10.5px; color: var(--fg-faint); font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+aside a.nav:hover { background: var(--bg-soft); color: var(--fg); }
+aside a.nav.on { background: var(--bg-soft); color: var(--accent); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+aside .foot { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--fg-faint); }
+aside .foot a { color: var(--fg-dim); text-decoration: none; display: block; padding: 3px 0; }
+aside .foot a:hover { color: var(--accent); }
+
+/* ---------- content ---------- */
+main { flex: 1 1 auto; min-width: 0; padding: 38px 40px 100px; }
+main > :first-child { margin-top: 0; }
+
+h1 { font-size: 30px; font-weight: 700; color: var(--head); letter-spacing: -0.7px; margin: 0 0 6px; line-height: 1.25; }
+h2 {
+  font-size: 19px; font-weight: 700; color: var(--head); letter-spacing: -0.3px;
+  margin: 44px 0 14px; padding-bottom: 7px; border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 15.5px; font-weight: 600; color: var(--head); margin: 28px 0 9px; }
+p { margin: 0 0 13px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+blockquote {
+  margin: 18px 0; padding: 12px 18px; border-left: 3px solid var(--accent-dim);
+  background: var(--bg-soft); border-radius: 0 7px 7px 0; color: var(--fg-dim);
+}
+blockquote p { margin: 0 0 8px; }
+blockquote p:last-child { margin: 0; }
+blockquote strong { color: var(--green); }
+
+ul, ol { padding-left: 20px; margin: 0 0 14px; }
+li { margin-bottom: 5px; }
+li::marker { color: var(--fg-faint); }
+strong { color: var(--head); font-weight: 600; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+code {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+  padding: 1.5px 6px; border-radius: 5px; color: var(--fg-dim);
+}
+pre {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 9px; padding: 15px 18px; overflow-x: auto; margin: 0 0 16px;
+}
+pre code { background: none; border: 0; padding: 0; font-size: 12.5px; line-height: 1.75; color: var(--fg-dim); }
+
+table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: 13.5px; display: block; overflow-x: auto; }
+th {
+  background: var(--bg-soft); color: var(--head); font-weight: 600;
+  text-align: left; padding: 8px 12px; border: 1px solid var(--line); white-space: nowrap;
+}
+td { padding: 8px 12px; border: 1px solid var(--line-soft); vertical-align: top; }
+tr:hover td { background: var(--bg-soft); }
+
+img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); margin: 8px 0 18px; display: block; }
+img.badge { display: inline-block; height: 20px; width: auto; border: 0; border-radius: 4px; margin: 0 5px 8px 0; vertical-align: middle; }
+p.badges { margin-bottom: 8px; }
+
+/* header block under h1 */
+h1 + p { color: var(--fg-dim); font-size: 14.5px; }
+
+@media (max-width: 860px) {
+  .wrap { flex-direction: column; }
+  aside {
+    width: auto; flex: none; position: static; height: auto;
+    border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 20px 16px;
+  }
+  main { padding: 26px 20px 70px; }
+  h1 { font-size: 25px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <a class="brand" href="index.html">
+    <b>신윤상</b>
+    <span>SRE · Security · Governance</span>
+  </a>
+  <a class="nav" href="index.html">전체 개요</a>
+  <div class="navlabel">프로젝트 케이스</div>
+  <div class="navsub">신뢰성 · 장애관리</div>
+  <a class="nav" href="p01-incident-framework.html">장애관리 프레임워크<em>무신사</em></a>
+  <a class="nav" href="p02-slo.html">전사 SLO 체계<em>무신사</em></a>
+  <a class="nav" href="p03-drill.html">비상대응훈련<em>무신사</em></a>
+  <a class="nav" href="p04-automation.html">신뢰성 자동화<em>무신사</em></a>
+  <div class="navsub">거버넌스 · 보안 · 규제</div>
+  <a class="nav" href="p05-ai-governance.html">AI 거버넌스<em>진행 중</em></a>
+  <a class="nav" href="p06-privacy.html">개인정보 사고대응<em>트렌비</em></a>
+  <a class="nav" href="p07-security.html">보안·ISMS-P 대응<em>3개 조직</em></a>
+  <a class="nav" href="p10-fin-compliance.html">금융권 규제<em>넥스클라우드</em></a>
+  <div class="navsub">플랫폼 · 비용</div>
+  <a class="nav" href="p08-eks.html">EKS 플랫폼 리빌드<em>트렌비</em></a>
+  <a class="nav on" href="p09-cost.html">비용·제3자 리스크<em>트렌비</em></a>
+  <div class="navsub">인프라 · 대외협력</div>
+  <a class="nav" href="p11-neutral-dc.html">중립 데이터센터<em>NAVER</em></a>
+  <a class="nav" href="p12-chuncheon-dc.html">춘천 데이터센터<em>NAVER</em></a>
+  <div class="navlabel">근무 기업</div>
+  <a class="nav" href="c-musinsa.html">무신사<em>2025.01 –</em></a>
+  <a class="nav" href="c-trenbe.html">트렌비<em>2021 – 2024</em></a>
+  <a class="nav" href="c-nexcloud.html">넥스클라우드<em>2020 – 2021</em></a>
+  <a class="nav" href="c-osc-korea.html">OSC Korea<em>2020</em></a>
+  <a class="nav" href="c-starlabs.html">스타랩스<em>2018 – 2020</em></a>
+  <a class="nav" href="c-insoft.html">아이엔소프트<em>2016 – 2018</em></a>
+  <a class="nav" href="c-naver.html">NAVER<em>2002 – 2014</em></a>
+  <a class="nav" href="c-yahoo-korea.html">Yahoo Korea<em>2006 – 2007</em></a>
+  <div class="foot">
+    <a href="https://www.linkedin.com/in/yoonsang-shin-859b8b1a2" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="mailto:sysang0891@gmail.com">sysang0891@gmail.com</a>
+  </div>
+</aside>
+<main>
+<p><a href="index.html">← 포트폴리오</a> · <a href="c-trenbe.html">트렌비</a></p>
+<h1>클라우드 비용 최적화와 제3자 의존성 제거</h1>
+<blockquote>
+<p>월 인프라 비용 <strong>43.9% 절감</strong>(연환산 약 10억 원)으로 기업 BEP 달성에 직접 기여하고,
+MSP 기술지원 없이 자체 운영으로 전환해 외부 의존성을 구조적으로 제거했습니다.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>조직</th>
+<th>시기</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>트렌비</td>
+<td>2021.06 – 2024.12</td>
+<td>SRE Lead — 비용 · 계약 총괄</td>
+</tr>
+</tbody>
+</table>
+<p><strong>출발점</strong> — 비용 관리 체계 없음. 인프라 비용 우상향. 명목상 MSP에 운영을 맡기고 있었으나 실제 통제권은 안에도 밖에도 없음.</p>
+<hr />
+<h2>문제</h2>
+<p>비용이 오르는 것 자체보다, <strong>왜 오르는지 설명할 수 없다는 것</strong>이 문제였습니다.</p>
+<ul>
+<li>어떤 리소스가 어떤 서비스에 쓰이는지 귀속이 안 됐습니다.</li>
+<li>MSP에 기술지원 비용을 내고 있었지만, 실제 운영 판단은 내부에서 하고 있었습니다. 돈은 나가는데 역량은 안 쌓였습니다.</li>
+<li>상용 제품 라이선스가 여러 개 있었고, 각각 계약 시점이 달라 전체 그림이 없었습니다.</li>
+</ul>
+<p>그리고 비용 절감은 대개 일회성으로 끝납니다. 한 번 줄이고 나면 다시 오릅니다.</p>
+<h2>제약</h2>
+<ul>
+<li>같은 기간에 <a href="p08-eks.html">플랫폼을 다시 짓고 가용성을 올려야</a> 했습니다.</li>
+<li>회사가 BEP를 향해 가던 시기였습니다. <strong>절감이 서비스 품질 저하로 나타나면 안 됐습니다.</strong></li>
+<li>인력이 늘지 않는 조건이었습니다.</li>
+</ul>
+<h2>접근 — 네 개의 레버를 순서대로</h2>
+<p><img alt="인프라 비용 최적화" src="assets/trenbe-cost-optimization.png" /></p>
+<h3>1. 계약 레버 — 구조 자체를 조정</h3>
+<ul>
+<li><strong>AWS EDP 계약</strong></li>
+<li><strong>MSP 보상 합의</strong></li>
+<li><strong>CDN 비용전략 합의</strong></li>
+</ul>
+<p>단가를 깎는 협상이 아니라 <strong>계약 구조를 바꾸는 협상</strong>이었습니다.
+어떤 항목이 왜 그 가격인지를 TCO로 분해해 놓으면, 협상 테이블에서 이야기할 것이 달라집니다.</p>
+<h3>2. 제3자 의존성 제거 — MSP 기술지원 미수령, 자체 운영 전환</h3>
+<p>가장 큰 구조 변경입니다.</p>
+<p>MSP 기술지원을 받지 않고 인프라를 자체 운영하기로 했습니다.
+비용 절감이 목적의 절반이고, 나머지 절반은 <strong>외부 사업자에 대한 의존성 제거</strong>였습니다.</p>
+<ul>
+<li>장애 시 대응 속도가 외부 조직의 SLA에 묶이지 않음</li>
+<li>운영 역량이 내부에 남음</li>
+<li>아키텍처 변경에 외부 승인 단계가 사라짐</li>
+</ul>
+<p>이건 비용 결정이면서 동시에 <strong>리스크 결정</strong>이었습니다.
+플랫폼을 다시 짓는 시기와 겹쳤기 때문에 가능했습니다 — 어차피 새로 배워야 할 것을 내부에서 배웠습니다.</p>
+<h3>3. 구조 레버 — 오픈소스 대체와 SaaS 내재화</h3>
+<table>
+<thead>
+<tr>
+<th>대체 전</th>
+<th>대체 후</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ElasticSearch</td>
+<td><strong>Loki + Promtail</strong></td>
+</tr>
+<tr>
+<td>상용 DB</td>
+<td><strong>Percona</strong></td>
+</tr>
+<tr>
+<td>일부 SaaS</td>
+<td>내재화 또는 해지</td>
+</tr>
+</tbody>
+</table>
+<p>로그 스택 교체는 비용만의 문제가 아니었습니다.
+ElasticSearch는 운영 부담이 크고, 인력이 없는 조직에서는 그 부담 자체가 리스크입니다.</p>
+<h3>4. 아키텍처 레버 — EKS 전환</h3>
+<p><a href="p08-eks.html">플랫폼 리빌드</a>로 리소스 밀도가 올라가면서 비용이 다시 내려갔습니다.</p>
+<h3>5. 일회성을 상시 체계로 — Multi Cloud Cost Explorer</h3>
+<p><strong>Imply 기반 Multi Cloud Cost Explorer를 구축</strong>해,
+기술 도입·대체·계약의 전 과정을 <strong>TCO 분석으로 검증하는 의사결정 체계</strong>를 운영했습니다.</p>
+<p>절감이 유지되려면 "왜 이 지출이 필요한가"를 상시로 물을 수 있는 도구가 있어야 합니다.
+분기마다 사람이 엑셀로 들여다보는 방식은 반드시 무너집니다.</p>
+<hr />
+<h2>결과</h2>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>피크 대비 월비용</td>
+<td><strong>-43.9%</strong> (2.35억 → 1.32억, VAT 포함)</td>
+</tr>
+<tr>
+<td>전년 동기 대비</td>
+<td>-38.9%</td>
+</tr>
+<tr>
+<td>연환산 절감액</td>
+<td>약 10억 원</td>
+</tr>
+<tr>
+<td>같은 기간 가용성</td>
+<td><strong>99.98% 유지</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>기업 BEP 달성에 직접 기여</strong></li>
+<li>일회성 절감이 아니라 상시 관리 체계로 전환</li>
+<li>외부 사업자 없이 인프라를 운영할 수 있는 내부 역량 확보</li>
+</ul>
+<h2>회고</h2>
+<p><strong>비용과 리스크는 같은 문제의 두 얼굴이었습니다.</strong>
+MSP 기술지원을 끊은 건 비용 때문에 시작했지만, 결과적으로 가장 큰 이득은
+장애 대응이 외부 조직의 응답 시간에 묶이지 않게 된 것이었습니다.</p>
+<p><strong>절감액보다 중요한 건 설명 가능성입니다.</strong> 43.9%라는 숫자보다,
+"이 항목이 왜 이만큼인가"에 언제든 답할 수 있게 된 것이 이후 의사결정을 바꿨습니다.
+새 도구를 도입할 때 TCO를 먼저 계산하는 게 당연한 절차가 됐습니다.</p>
+<p><strong>가용성을 깎지 않고 줄일 수 있었던 이유</strong>는 <a href="p08-eks.html">플랫폼 리빌드</a> 회고에 적었습니다 —
+기존 지출의 상당 부분이 가용성이 아니라 검증되지 않은 안심에 쓰이고 있었습니다.</p>
+<hr />
+<p><strong>관련 케이스</strong> — <a href="p08-eks.html">EKS 플랫폼 리빌드</a> · <a href="p07-security.html">클라우드 보안 프레임워크</a></p>
+<p><code>AWS EDP</code> <code>Savings Plan/RI</code> <code>TCO 분석</code> <code>Imply/Druid</code> <code>Loki+Promtail</code> <code>Percona</code> <code>MSP 계약</code> <code>CDN</code></p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yahoo Korea · 신윤상 Portfolio</title>
+<meta name="description" content="신윤상 — SRE · Cloud Native &amp; Security Architect 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-soft: #131a23;
+  --bg-card: #161d27;
+  --line: #232c38;
+  --line-soft: #1c242f;
+  --fg: #d8dee6;
+  --fg-dim: #8b97a6;
+  --fg-faint: #616d7c;
+  --accent: #58a6ff;
+  --accent-dim: #2f5f96;
+  --green: #4ec9a5;
+  --amber: #d4a548;
+  --head: #f0f4f8;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff; --bg-soft: #f6f8fa; --bg-card: #ffffff;
+    --line: #d5dce4; --line-soft: #e6ebf0;
+    --fg: #27313d; --fg-dim: #5c6773; --fg-faint: #8a939e;
+    --accent: #0a5fc4; --accent-dim: #9dbde4;
+    --green: #17795e; --amber: #8a6416; --head: #10233a;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { display: flex; max-width: 1180px; margin: 0 auto; gap: 0; }
+
+/* ---------- sidebar ---------- */
+aside {
+  width: 232px; flex: 0 0 232px; border-right: 1px solid var(--line);
+  padding: 34px 20px 60px 16px; position: sticky; top: 0; height: 100vh;
+  overflow-y: auto;
+}
+aside .brand { display: block; text-decoration: none; margin-bottom: 26px; }
+aside .brand b { display: block; font-size: 17px; font-weight: 700; color: var(--head); letter-spacing: -0.2px; }
+aside .brand span { display: block; font-size: 11.5px; color: var(--fg-faint); margin-top: 2px; letter-spacing: 0.2px; }
+aside .navlabel {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.1px;
+  color: var(--fg-faint); margin: 22px 0 7px 10px; font-weight: 700;
+}
+aside .navsub {
+  font-size: 11px; color: var(--fg-faint); margin: 13px 0 4px 10px; font-weight: 600;
+  padding-top: 8px; border-top: 1px dashed var(--line-soft);
+}
+aside .navsub:first-of-type { border-top: 0; padding-top: 0; margin-top: 4px; }
+aside a.nav {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 6px;
+  padding: 6px 10px; border-radius: 6px; text-decoration: none;
+  color: var(--fg-dim); font-size: 13.5px; line-height: 1.4;
+}
+aside a.nav em { font-style: normal; font-size: 10.5px; color: var(--fg-faint); font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+aside a.nav:hover { background: var(--bg-soft); color: var(--fg); }
+aside a.nav.on { background: var(--bg-soft); color: var(--accent); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+aside .foot { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--fg-faint); }
+aside .foot a { color: var(--fg-dim); text-decoration: none; display: block; padding: 3px 0; }
+aside .foot a:hover { color: var(--accent); }
+
+/* ---------- content ---------- */
+main { flex: 1 1 auto; min-width: 0; padding: 38px 40px 100px; }
+main > :first-child { margin-top: 0; }
+
+h1 { font-size: 30px; font-weight: 700; color: var(--head); letter-spacing: -0.7px; margin: 0 0 6px; line-height: 1.25; }
+h2 {
+  font-size: 19px; font-weight: 700; color: var(--head); letter-spacing: -0.3px;
+  margin: 44px 0 14px; padding-bottom: 7px; border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 15.5px; font-weight: 600; color: var(--head); margin: 28px 0 9px; }
+p { margin: 0 0 13px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+blockquote {
+  margin: 18px 0; padding: 12px 18px; border-left: 3px solid var(--accent-dim);
+  background: var(--bg-soft); border-radius: 0 7px 7px 0; color: var(--fg-dim);
+}
+blockquote p { margin: 0 0 8px; }
+blockquote p:last-child { margin: 0; }
+blockquote strong { color: var(--green); }
+
+ul, ol { padding-left: 20px; margin: 0 0 14px; }
+li { margin-bottom: 5px; }
+li::marker { color: var(--fg-faint); }
+strong { color: var(--head); font-weight: 600; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+code {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+  padding: 1.5px 6px; border-radius: 5px; color: var(--fg-dim);
+}
+pre {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 9px; padding: 15px 18px; overflow-x: auto; margin: 0 0 16px;
+}
+pre code { background: none; border: 0; padding: 0; font-size: 12.5px; line-height: 1.75; color: var(--fg-dim); }
+
+table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: 13.5px; display: block; overflow-x: auto; }
+th {
+  background: var(--bg-soft); color: var(--head); font-weight: 600;
+  text-align: left; padding: 8px 12px; border: 1px solid var(--line); white-space: nowrap;
+}
+td { padding: 8px 12px; border: 1px solid var(--line-soft); vertical-align: top; }
+tr:hover td { background: var(--bg-soft); }
+
+img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); margin: 8px 0 18px; display: block; }
+img.badge { display: inline-block; height: 20px; width: auto; border: 0; border-radius: 4px; margin: 0 5px 8px 0; vertical-align: middle; }
+p.badges { margin-bottom: 8px; }
+
+/* header block under h1 */
+h1 + p { color: var(--fg-dim); font-size: 14.5px; }
+
+@media (max-width: 860px) {
+  .wrap { flex-direction: column; }
+  aside {
+    width: auto; flex: none; position: static; height: auto;
+    border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 20px 16px;
+  }
+  main { padding: 26px 20px 70px; }
+  h1 { font-size: 25px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <a class="brand" href="index.html">
+    <b>신윤상</b>
+    <span>SRE · Security · Governance</span>
+  </a>
+  <a class="nav" href="index.html">전체 개요</a>
+  <div class="navlabel">프로젝트 케이스</div>
+  <div class="navsub">신뢰성 · 장애관리</div>
+  <a class="nav" href="p01-incident-framework.html">장애관리 프레임워크<em>무신사</em></a>
+  <a class="nav" href="p02-slo.html">전사 SLO 체계<em>무신사</em></a>
+  <a class="nav" href="p03-drill.html">비상대응훈련<em>무신사</em></a>
+  <a class="nav" href="p04-automation.html">신뢰성 자동화<em>무신사</em></a>
+  <div class="navsub">거버넌스 · 보안 · 규제</div>
+  <a class="nav" href="p05-ai-governance.html">AI 거버넌스<em>진행 중</em></a>
+  <a class="nav" href="p06-privacy.html">개인정보 사고대응<em>트렌비</em></a>
+  <a class="nav" href="p07-security.html">보안·ISMS-P 대응<em>3개 조직</em></a>
+  <a class="nav" href="p10-fin-compliance.html">금융권 규제<em>넥스클라우드</em></a>
+  <div class="navsub">플랫폼 · 비용</div>
+  <a class="nav" href="p08-eks.html">EKS 플랫폼 리빌드<em>트렌비</em></a>
+  <a class="nav" href="p09-cost.html">비용·제3자 리스크<em>트렌비</em></a>
+  <div class="navsub">인프라 · 대외협력</div>
+  <a class="nav" href="p11-neutral-dc.html">중립 데이터센터<em>NAVER</em></a>
+  <a class="nav" href="p12-chuncheon-dc.html">춘천 데이터센터<em>NAVER</em></a>
+  <div class="navlabel">근무 기업</div>
+  <a class="nav" href="c-musinsa.html">무신사<em>2025.01 –</em></a>
+  <a class="nav" href="c-trenbe.html">트렌비<em>2021 – 2024</em></a>
+  <a class="nav" href="c-nexcloud.html">넥스클라우드<em>2020 – 2021</em></a>
+  <a class="nav" href="c-osc-korea.html">OSC Korea<em>2020</em></a>
+  <a class="nav" href="c-starlabs.html">스타랩스<em>2018 – 2020</em></a>
+  <a class="nav" href="c-insoft.html">아이엔소프트<em>2016 – 2018</em></a>
+  <a class="nav" href="c-naver.html">NAVER<em>2002 – 2014</em></a>
+  <a class="nav on" href="c-yahoo-korea.html">Yahoo Korea<em>2006 – 2007</em></a>
+  <div class="foot">
+    <a href="https://www.linkedin.com/in/yoonsang-shin-859b8b1a2" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="mailto:sysang0891@gmail.com">sysang0891@gmail.com</a>
+  </div>
+</aside>
+<main>
+<p><a href="index.html">← 포트폴리오</a></p>
+<h1>Yahoo Korea</h1>
+<p><strong>Oracle DBA · 보안 (ASIA)</strong>
+<code>2006.04 – 2007.03</code></p>
+<hr />
+<h2>이 시기의 상황</h2>
+<p>DevOps라는 말이 자리 잡기 전, 개발과 인프라를 하나로 묶는 조직이 신설되던 시기에 <strong>초기 구성원으로 합류</strong>했습니다.
+한국에서 정립한 운영 방식을 다른 지역에 전파해야 하는 구조였습니다.</p>
+<h2>맡은 범위</h2>
+<p>ASIA 지역 Oracle DB 구축·운영과 보안. 한 지역의 운영 표준을 다른 지역으로 옮기는 일.</p>
+<h2>주요 업무</h2>
+<p><strong>ASIA 지역 Oracle DBA</strong></p>
+<ul>
+<li>지도(거기) · 검색 · UCC 서비스 DB 구축·운영 — Oracle RAC, Data Guard 구성 관리 (FreeBSD, RedHat, Nagios)</li>
+<li>조직에서 정립한 운영 방식을 <strong>대만 · 홍콩 · 싱가포르 등 ASIA 지역 DB 관리에 적용·전파</strong></li>
+</ul>
+<p><strong>ASIA 보안협의체</strong></p>
+<ul>
+<li>협의체 구성원으로 정기 · 수시 점검 수행</li>
+<li>대만 HQ 보고, <strong>Asia Pacific 보안심사 이행</strong></li>
+</ul>
+<h2>이어진 것</h2>
+<p>RAC와 Data Guard는 가용성 설계의 초기 형태였습니다.
+노드 장애와 사이트 장애를 구분해서 다루는 관점 — Active와 Standby를 나누는 사고방식이 여기서 시작됐고,
+<a href="p08-eks.html">트렌비의 Zone Active / Region Standby 판단</a>까지 이어집니다.</p>
+<p>본사 기준을 지역에서 이행하고 결과를 보고하는 구조는
+이후 <a href="p07-security.html">ISMS-P 심사 대응</a>에서 쓰게 되는
+<strong>"기준 항목에 대해 근거를 갖춰 답한다"</strong> 는 작업 방식의 출발점입니다.</p>
+</main>
+</div>
+</body>
+</html>

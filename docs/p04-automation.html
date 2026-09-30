@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>신뢰성 자동화 · 신윤상 Portfolio</title>
+<meta name="description" content="신윤상 — SRE · Cloud Native &amp; Security Architect 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-soft: #131a23;
+  --bg-card: #161d27;
+  --line: #232c38;
+  --line-soft: #1c242f;
+  --fg: #d8dee6;
+  --fg-dim: #8b97a6;
+  --fg-faint: #616d7c;
+  --accent: #58a6ff;
+  --accent-dim: #2f5f96;
+  --green: #4ec9a5;
+  --amber: #d4a548;
+  --head: #f0f4f8;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff; --bg-soft: #f6f8fa; --bg-card: #ffffff;
+    --line: #d5dce4; --line-soft: #e6ebf0;
+    --fg: #27313d; --fg-dim: #5c6773; --fg-faint: #8a939e;
+    --accent: #0a5fc4; --accent-dim: #9dbde4;
+    --green: #17795e; --amber: #8a6416; --head: #10233a;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { display: flex; max-width: 1180px; margin: 0 auto; gap: 0; }
+
+/* ---------- sidebar ---------- */
+aside {
+  width: 232px; flex: 0 0 232px; border-right: 1px solid var(--line);
+  padding: 34px 20px 60px 16px; position: sticky; top: 0; height: 100vh;
+  overflow-y: auto;
+}
+aside .brand { display: block; text-decoration: none; margin-bottom: 26px; }
+aside .brand b { display: block; font-size: 17px; font-weight: 700; color: var(--head); letter-spacing: -0.2px; }
+aside .brand span { display: block; font-size: 11.5px; color: var(--fg-faint); margin-top: 2px; letter-spacing: 0.2px; }
+aside .navlabel {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.1px;
+  color: var(--fg-faint); margin: 22px 0 7px 10px; font-weight: 700;
+}
+aside .navsub {
+  font-size: 11px; color: var(--fg-faint); margin: 13px 0 4px 10px; font-weight: 600;
+  padding-top: 8px; border-top: 1px dashed var(--line-soft);
+}
+aside .navsub:first-of-type { border-top: 0; padding-top: 0; margin-top: 4px; }
+aside a.nav {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 6px;
+  padding: 6px 10px; border-radius: 6px; text-decoration: none;
+  color: var(--fg-dim); font-size: 13.5px; line-height: 1.4;
+}
+aside a.nav em { font-style: normal; font-size: 10.5px; color: var(--fg-faint); font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+aside a.nav:hover { background: var(--bg-soft); color: var(--fg); }
+aside a.nav.on { background: var(--bg-soft); color: var(--accent); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+aside .foot { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--fg-faint); }
+aside .foot a { color: var(--fg-dim); text-decoration: none; display: block; padding: 3px 0; }
+aside .foot a:hover { color: var(--accent); }
+
+/* ---------- content ---------- */
+main { flex: 1 1 auto; min-width: 0; padding: 38px 40px 100px; }
+main > :first-child { margin-top: 0; }
+
+h1 { font-size: 30px; font-weight: 700; color: var(--head); letter-spacing: -0.7px; margin: 0 0 6px; line-height: 1.25; }
+h2 {
+  font-size: 19px; font-weight: 700; color: var(--head); letter-spacing: -0.3px;
+  margin: 44px 0 14px; padding-bottom: 7px; border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 15.5px; font-weight: 600; color: var(--head); margin: 28px 0 9px; }
+p { margin: 0 0 13px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+blockquote {
+  margin: 18px 0; padding: 12px 18px; border-left: 3px solid var(--accent-dim);
+  background: var(--bg-soft); border-radius: 0 7px 7px 0; color: var(--fg-dim);
+}
+blockquote p { margin: 0 0 8px; }
+blockquote p:last-child { margin: 0; }
+blockquote strong { color: var(--green); }
+
+ul, ol { padding-left: 20px; margin: 0 0 14px; }
+li { margin-bottom: 5px; }
+li::marker { color: var(--fg-faint); }
+strong { color: var(--head); font-weight: 600; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+code {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+  padding: 1.5px 6px; border-radius: 5px; color: var(--fg-dim);
+}
+pre {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 9px; padding: 15px 18px; overflow-x: auto; margin: 0 0 16px;
+}
+pre code { background: none; border: 0; padding: 0; font-size: 12.5px; line-height: 1.75; color: var(--fg-dim); }
+
+table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: 13.5px; display: block; overflow-x: auto; }
+th {
+  background: var(--bg-soft); color: var(--head); font-weight: 600;
+  text-align: left; padding: 8px 12px; border: 1px solid var(--line); white-space: nowrap;
+}
+td { padding: 8px 12px; border: 1px solid var(--line-soft); vertical-align: top; }
+tr:hover td { background: var(--bg-soft); }
+
+img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); margin: 8px 0 18px; display: block; }
+img.badge { display: inline-block; height: 20px; width: auto; border: 0; border-radius: 4px; margin: 0 5px 8px 0; vertical-align: middle; }
+p.badges { margin-bottom: 8px; }
+
+/* header block under h1 */
+h1 + p { color: var(--fg-dim); font-size: 14.5px; }
+
+@media (max-width: 860px) {
+  .wrap { flex-direction: column; }
+  aside {
+    width: auto; flex: none; position: static; height: auto;
+    border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 20px 16px;
+  }
+  main { padding: 26px 20px 70px; }
+  h1 { font-size: 25px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <a class="brand" href="index.html">
+    <b>신윤상</b>
+    <span>SRE · Security · Governance</span>
+  </a>
+  <a class="nav" href="index.html">전체 개요</a>
+  <div class="navlabel">프로젝트 케이스</div>
+  <div class="navsub">신뢰성 · 장애관리</div>
+  <a class="nav" href="p01-incident-framework.html">장애관리 프레임워크<em>무신사</em></a>
+  <a class="nav" href="p02-slo.html">전사 SLO 체계<em>무신사</em></a>
+  <a class="nav" href="p03-drill.html">비상대응훈련<em>무신사</em></a>
+  <a class="nav on" href="p04-automation.html">신뢰성 자동화<em>무신사</em></a>
+  <div class="navsub">거버넌스 · 보안 · 규제</div>
+  <a class="nav" href="p05-ai-governance.html">AI 거버넌스<em>진행 중</em></a>
+  <a class="nav" href="p06-privacy.html">개인정보 사고대응<em>트렌비</em></a>
+  <a class="nav" href="p07-security.html">보안·ISMS-P 대응<em>3개 조직</em></a>
+  <a class="nav" href="p10-fin-compliance.html">금융권 규제<em>넥스클라우드</em></a>
+  <div class="navsub">플랫폼 · 비용</div>
+  <a class="nav" href="p08-eks.html">EKS 플랫폼 리빌드<em>트렌비</em></a>
+  <a class="nav" href="p09-cost.html">비용·제3자 리스크<em>트렌비</em></a>
+  <div class="navsub">인프라 · 대외협력</div>
+  <a class="nav" href="p11-neutral-dc.html">중립 데이터센터<em>NAVER</em></a>
+  <a class="nav" href="p12-chuncheon-dc.html">춘천 데이터센터<em>NAVER</em></a>
+  <div class="navlabel">근무 기업</div>
+  <a class="nav" href="c-musinsa.html">무신사<em>2025.01 –</em></a>
+  <a class="nav" href="c-trenbe.html">트렌비<em>2021 – 2024</em></a>
+  <a class="nav" href="c-nexcloud.html">넥스클라우드<em>2020 – 2021</em></a>
+  <a class="nav" href="c-osc-korea.html">OSC Korea<em>2020</em></a>
+  <a class="nav" href="c-starlabs.html">스타랩스<em>2018 – 2020</em></a>
+  <a class="nav" href="c-insoft.html">아이엔소프트<em>2016 – 2018</em></a>
+  <a class="nav" href="c-naver.html">NAVER<em>2002 – 2014</em></a>
+  <a class="nav" href="c-yahoo-korea.html">Yahoo Korea<em>2006 – 2007</em></a>
+  <div class="foot">
+    <a href="https://www.linkedin.com/in/yoonsang-shin-859b8b1a2" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="mailto:sysang0891@gmail.com">sysang0891@gmail.com</a>
+  </div>
+</aside>
+<main>
+<p><a href="index.html">← 포트폴리오</a> · <a href="c-musinsa.html">무신사</a></p>
+<h1>신뢰성 자동화 — Alert Gateway와 인시던트 봇</h1>
+<blockquote>
+<p>멀티소스 알림을 하나로 모아 중복을 제거하고 LLM·RAG로 컨텍스트를 붙인 뒤, Slack에서 장애 대응 전 과정이 흐르게 만들었습니다.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>조직</th>
+<th>시기</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>무신사 · 29CM</td>
+<td>2025.01 – 진행 중</td>
+<td>설계 · 개발 · 운영</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>문제</h2>
+<p><strong>알림은 많은데 정보는 없었습니다.</strong></p>
+<ul>
+<li>CloudWatch · Datadog · Grafana가 각각 알림을 보냈고, 하나의 장애가 세 채널에서 서로 다른 모양으로 도착했습니다.</li>
+<li>같은 알림이 반복 발화되면서 실제 신호가 묻혔습니다.</li>
+<li>알림 본문만으로는 대응을 시작할 수 없었습니다. 어느 서비스인지, 최근에 무슨 배포가 있었는지, 이전에 같은 일이 있었는지를 매번 따로 찾아야 했습니다.</li>
+</ul>
+<p>그리고 장애가 선언되면 <strong>채널 생성 → 티켓 생성 → 온콜 호출 → 문서 링크</strong>를 사람이 손으로 했습니다.
+가장 급한 순간에 가장 기계적인 일이 사람 손에 있었습니다.</p>
+<h2>제약</h2>
+<ul>
+<li>알림 소스를 하나로 통일하는 것은 불가능했습니다. 각각 존재 이유가 있었습니다.</li>
+<li>자동화가 틀리면 대응이 더 느려집니다. <strong>실패했을 때 사람이 바로 이어받을 수 있어야</strong> 했습니다.</li>
+<li>LLM 응답 지연이 알림 전달을 막으면 안 됐습니다.</li>
+</ul>
+<h2>설계</h2>
+<h3>1. 멀티소스 Alert Gateway</h3>
+<pre><code>CloudWatch ┐
+Datadog    ├→  정규화  →  Redis 중복 제거  →  심각도 분류  →  LLM·RAG 컨텍스트 보강  →  전달
+Grafana    ┘
+</code></pre>
+<ul>
+<li><strong>정규화</strong> — 소스별로 다른 페이로드를 공통 스키마로 변환. 이게 없으면 뒤의 모든 단계가 소스별 분기가 됩니다.</li>
+<li><strong>Redis 기반 중복 제거</strong> — 동일 조건 알림을 윈도우 단위로 묶어 한 번만 전달</li>
+<li><strong>심각도 분류</strong> — SEV 등급 체계와 연결</li>
+<li><strong>LLM · RAG 컨텍스트 보강</strong> — 관련 문서·과거 사례·서비스 정보를 알림에 붙여서 보냄</li>
+</ul>
+<p>보강 단계는 <strong>실패해도 알림은 나갑니다.</strong> LLM 호출이 느리거나 실패하면 원본 알림이 그대로 전달됩니다.
+보강은 부가 가치지 전달 경로가 아니어야 합니다.</p>
+<h3>2. Slack 인시던트 봇</h3>
+<p>Jira · PagerDuty · Confluence를 연동해 장애 대응 동선을 Slack 안에서 끝나게 했습니다.</p>
+<ul>
+<li>장애 선언 → 채널 생성 → Jira 티켓 생성 → PagerDuty 온콜 호출</li>
+<li>프레임워크 문서(SOP·체크리스트) 링크 자동 첨부</li>
+<li>타임라인 기록 — Scribe 역할의 기계적인 부분을 봇이 대신함</li>
+</ul>
+<p>프레임워크에서 정의한 <strong>역할 모델과 Close 게이트가 봇의 동작으로 구현</strong>돼 있습니다.
+문서로만 있는 절차는 지켜지지 않고, 도구에 박혀 있는 절차는 지켜집니다.</p>
+<h3>3. PagerDuty 온콜 체계 전사 확장</h3>
+<p>온콜을 일부 조직의 관행에서 전사 체계로 확장하고, 온콜 건전성을 지표로 관리했습니다.</p>
+<h3>4. 격주 Incident Flash Report</h3>
+<p>SLA 위반 추적과 Error Budget 모니터링을 격주 리포트로 묶어 <strong>경영 보고 라인에 연결</strong>했습니다.
+대응 결과가 조직 밖으로 나가지 않으면 개선에 필요한 리소스도 받을 수 없습니다.</p>
+<hr />
+<h2>결과</h2>
+<ul>
+<li>알림 중복 제거로 실제 신호의 가시성 확보</li>
+<li>장애 선언 이후의 준비 작업이 사람 손에서 빠짐 — 대응 시작 시점이 앞당겨짐</li>
+<li>프레임워크 절차가 도구에 구현되어 준수율이 문서 의존에서 벗어남</li>
+<li>격주 Flash Report로 SLA 위반·Error Budget이 정기 보고 항목이 됨</li>
+</ul>
+<h2>회고</h2>
+<p><strong>LLM을 경로가 아니라 곁가지에 붙인 것이 맞았습니다.</strong> 보강 단계를 필수 경로에 두면
+모델 지연이 곧 알림 지연이 됩니다. "실패하면 원본 그대로 나간다"는 설계가 실제 운영에서 여러 번 값을 했습니다.</p>
+<p><strong>자동화의 이득은 시간보다 순서였습니다.</strong> 채널 생성에 드는 30초를 줄인 것보다,
+대응자가 도착했을 때 이미 티켓과 문서와 타임라인이 준비돼 있다는 점이 컸습니다.</p>
+<hr />
+<p><strong>관련 케이스</strong> — <a href="p01-incident-framework.html">전사 장애관리 프레임워크</a> · <a href="p05-ai-governance.html">AI 거버넌스 프레임워크</a></p>
+<p><code>CloudWatch</code> <code>Datadog</code> <code>Grafana</code> <code>Redis</code> <code>LLM/RAG</code> <code>Slack API</code> <code>Jira</code> <code>PagerDuty</code> <code>Confluence</code> <code>Python</code></p>
+</main>
+</div>
+</body>
+</html>

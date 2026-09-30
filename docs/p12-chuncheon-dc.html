@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>춘천 데이터센터 · 신윤상 Portfolio</title>
+<meta name="description" content="신윤상 — SRE · Cloud Native &amp; Security Architect 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-soft: #131a23;
+  --bg-card: #161d27;
+  --line: #232c38;
+  --line-soft: #1c242f;
+  --fg: #d8dee6;
+  --fg-dim: #8b97a6;
+  --fg-faint: #616d7c;
+  --accent: #58a6ff;
+  --accent-dim: #2f5f96;
+  --green: #4ec9a5;
+  --amber: #d4a548;
+  --head: #f0f4f8;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff; --bg-soft: #f6f8fa; --bg-card: #ffffff;
+    --line: #d5dce4; --line-soft: #e6ebf0;
+    --fg: #27313d; --fg-dim: #5c6773; --fg-faint: #8a939e;
+    --accent: #0a5fc4; --accent-dim: #9dbde4;
+    --green: #17795e; --amber: #8a6416; --head: #10233a;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { display: flex; max-width: 1180px; margin: 0 auto; gap: 0; }
+
+/* ---------- sidebar ---------- */
+aside {
+  width: 232px; flex: 0 0 232px; border-right: 1px solid var(--line);
+  padding: 34px 20px 60px 16px; position: sticky; top: 0; height: 100vh;
+  overflow-y: auto;
+}
+aside .brand { display: block; text-decoration: none; margin-bottom: 26px; }
+aside .brand b { display: block; font-size: 17px; font-weight: 700; color: var(--head); letter-spacing: -0.2px; }
+aside .brand span { display: block; font-size: 11.5px; color: var(--fg-faint); margin-top: 2px; letter-spacing: 0.2px; }
+aside .navlabel {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.1px;
+  color: var(--fg-faint); margin: 22px 0 7px 10px; font-weight: 700;
+}
+aside .navsub {
+  font-size: 11px; color: var(--fg-faint); margin: 13px 0 4px 10px; font-weight: 600;
+  padding-top: 8px; border-top: 1px dashed var(--line-soft);
+}
+aside .navsub:first-of-type { border-top: 0; padding-top: 0; margin-top: 4px; }
+aside a.nav {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 6px;
+  padding: 6px 10px; border-radius: 6px; text-decoration: none;
+  color: var(--fg-dim); font-size: 13.5px; line-height: 1.4;
+}
+aside a.nav em { font-style: normal; font-size: 10.5px; color: var(--fg-faint); font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+aside a.nav:hover { background: var(--bg-soft); color: var(--fg); }
+aside a.nav.on { background: var(--bg-soft); color: var(--accent); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+aside .foot { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--fg-faint); }
+aside .foot a { color: var(--fg-dim); text-decoration: none; display: block; padding: 3px 0; }
+aside .foot a:hover { color: var(--accent); }
+
+/* ---------- content ---------- */
+main { flex: 1 1 auto; min-width: 0; padding: 38px 40px 100px; }
+main > :first-child { margin-top: 0; }
+
+h1 { font-size: 30px; font-weight: 700; color: var(--head); letter-spacing: -0.7px; margin: 0 0 6px; line-height: 1.25; }
+h2 {
+  font-size: 19px; font-weight: 700; color: var(--head); letter-spacing: -0.3px;
+  margin: 44px 0 14px; padding-bottom: 7px; border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 15.5px; font-weight: 600; color: var(--head); margin: 28px 0 9px; }
+p { margin: 0 0 13px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+blockquote {
+  margin: 18px 0; padding: 12px 18px; border-left: 3px solid var(--accent-dim);
+  background: var(--bg-soft); border-radius: 0 7px 7px 0; color: var(--fg-dim);
+}
+blockquote p { margin: 0 0 8px; }
+blockquote p:last-child { margin: 0; }
+blockquote strong { color: var(--green); }
+
+ul, ol { padding-left: 20px; margin: 0 0 14px; }
+li { margin-bottom: 5px; }
+li::marker { color: var(--fg-faint); }
+strong { color: var(--head); font-weight: 600; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+code {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+  padding: 1.5px 6px; border-radius: 5px; color: var(--fg-dim);
+}
+pre {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 9px; padding: 15px 18px; overflow-x: auto; margin: 0 0 16px;
+}
+pre code { background: none; border: 0; padding: 0; font-size: 12.5px; line-height: 1.75; color: var(--fg-dim); }
+
+table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: 13.5px; display: block; overflow-x: auto; }
+th {
+  background: var(--bg-soft); color: var(--head); font-weight: 600;
+  text-align: left; padding: 8px 12px; border: 1px solid var(--line); white-space: nowrap;
+}
+td { padding: 8px 12px; border: 1px solid var(--line-soft); vertical-align: top; }
+tr:hover td { background: var(--bg-soft); }
+
+img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); margin: 8px 0 18px; display: block; }
+img.badge { display: inline-block; height: 20px; width: auto; border: 0; border-radius: 4px; margin: 0 5px 8px 0; vertical-align: middle; }
+p.badges { margin-bottom: 8px; }
+
+/* header block under h1 */
+h1 + p { color: var(--fg-dim); font-size: 14.5px; }
+
+@media (max-width: 860px) {
+  .wrap { flex-direction: column; }
+  aside {
+    width: auto; flex: none; position: static; height: auto;
+    border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 20px 16px;
+  }
+  main { padding: 26px 20px 70px; }
+  h1 { font-size: 25px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <a class="brand" href="index.html">
+    <b>신윤상</b>
+    <span>SRE · Security · Governance</span>
+  </a>
+  <a class="nav" href="index.html">전체 개요</a>
+  <div class="navlabel">프로젝트 케이스</div>
+  <div class="navsub">신뢰성 · 장애관리</div>
+  <a class="nav" href="p01-incident-framework.html">장애관리 프레임워크<em>무신사</em></a>
+  <a class="nav" href="p02-slo.html">전사 SLO 체계<em>무신사</em></a>
+  <a class="nav" href="p03-drill.html">비상대응훈련<em>무신사</em></a>
+  <a class="nav" href="p04-automation.html">신뢰성 자동화<em>무신사</em></a>
+  <div class="navsub">거버넌스 · 보안 · 규제</div>
+  <a class="nav" href="p05-ai-governance.html">AI 거버넌스<em>진행 중</em></a>
+  <a class="nav" href="p06-privacy.html">개인정보 사고대응<em>트렌비</em></a>
+  <a class="nav" href="p07-security.html">보안·ISMS-P 대응<em>3개 조직</em></a>
+  <a class="nav" href="p10-fin-compliance.html">금융권 규제<em>넥스클라우드</em></a>
+  <div class="navsub">플랫폼 · 비용</div>
+  <a class="nav" href="p08-eks.html">EKS 플랫폼 리빌드<em>트렌비</em></a>
+  <a class="nav" href="p09-cost.html">비용·제3자 리스크<em>트렌비</em></a>
+  <div class="navsub">인프라 · 대외협력</div>
+  <a class="nav" href="p11-neutral-dc.html">중립 데이터센터<em>NAVER</em></a>
+  <a class="nav on" href="p12-chuncheon-dc.html">춘천 데이터센터<em>NAVER</em></a>
+  <div class="navlabel">근무 기업</div>
+  <a class="nav" href="c-musinsa.html">무신사<em>2025.01 –</em></a>
+  <a class="nav" href="c-trenbe.html">트렌비<em>2021 – 2024</em></a>
+  <a class="nav" href="c-nexcloud.html">넥스클라우드<em>2020 – 2021</em></a>
+  <a class="nav" href="c-osc-korea.html">OSC Korea<em>2020</em></a>
+  <a class="nav" href="c-starlabs.html">스타랩스<em>2018 – 2020</em></a>
+  <a class="nav" href="c-insoft.html">아이엔소프트<em>2016 – 2018</em></a>
+  <a class="nav" href="c-naver.html">NAVER<em>2002 – 2014</em></a>
+  <a class="nav" href="c-yahoo-korea.html">Yahoo Korea<em>2006 – 2007</em></a>
+  <div class="foot">
+    <a href="https://www.linkedin.com/in/yoonsang-shin-859b8b1a2" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="mailto:sysang0891@gmail.com">sysang0891@gmail.com</a>
+  </div>
+</aside>
+<main>
+<p><a href="index.html">← 포트폴리오</a> · <a href="c-naver.html">NAVER</a></p>
+<h1>춘천 데이터센터 — 연구과제에서 준공, 그리고 클라우드 상품화</h1>
+<blockquote>
+<p>자가 데이터센터를 <strong>보유할 것인가</strong>를 판단하는 최초 검토 단계부터 참여해,
+부지선정·설계·조달·준공을 거쳐 완공된 인프라를 퍼블릭 클라우드 사업으로 전환하는 단계까지 약 5년.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>조직</th>
+<th>시기</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAVER</td>
+<td>2009 – 2014</td>
+<td>타당성 연구과제 PL → 설계·조달 PM → 클라우드 사업기획 PO</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>문제</h2>
+<p>서비스는 빠르게 커지는데 인프라는 임대 IDC에 흩어져 있었습니다.</p>
+<p>자체 데이터센터를 <strong>보유할 것인가</strong>, 보유한다면 <strong>어떤 조건이어야 하는가</strong>.
+결정 이전에 판단 근거가 없었습니다. 수천억 규모 투자를 감으로 결정할 수는 없습니다.</p>
+<h2>1단계 — 자가확보 타당성 연구과제 (PL)</h2>
+<p>보유 여부와 조건을 판단하는 최초 검토를, 세 개 하위 과제로 나눴습니다.</p>
+<table>
+<thead>
+<tr>
+<th>하위 과제</th>
+<th>판단해야 했던 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>운영자동화</strong></td>
+<td>자체 센터를 운영할 때 필요한 인력·작업 구조 — 사람 비용이 타당성을 가름</td>
+</tr>
+<tr>
+<td><strong>설비조달</strong></td>
+<td>냉각탑 · 발전기 · 배터리 · 항온항습 등 주요 설비의 조달 구조와 비용</td>
+</tr>
+<tr>
+<td><strong>부지선정</strong></td>
+<td>입지 조건이 <strong>운영 원가에 어떻게 반영되는지</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>그린IT TF — PM</h3>
+<p>자가확보의 경제성을 지표로 증명하는 역할이었습니다.</p>
+<ul>
+<li>해외 선진사례 연구로 데이터센터 에너지 효율 기준 확보</li>
+<li><strong>PUE 지표를 도출</strong>해 운영 원가 경쟁력의 판단 기준으로 삼음</li>
+</ul>
+<p>PUE가 생기고 나서 부지 후보 비교가 가능해졌습니다.
+"춘천이 좋다"가 아니라 "이 입지의 예상 PUE가 이 수치이고, 그것이 연간 전력비 차이로 이만큼"이 됐습니다.</p>
+<h2>2단계 — 부지선정과 투자심의</h2>
+<p>입지를 감이 아니라 <strong>원가 변수로 분해</strong>해 평가했습니다.</p>
+<ul>
+<li>의암댐 활용, 기온·공조 조건, 교통, 지자체 협력을 항목별로 분석</li>
+<li>산업단지 신청과 CM단 선정 주관</li>
+<li><strong>투자유치 및 투자심의 이사회 보고</strong>(네트워크 회선 부문) — 수천억 규모 인프라 투자의 의사결정 지원</li>
+</ul>
+<h2>3단계 — 설계 · 구축 · 조달 (PM)</h2>
+<table>
+<thead>
+<tr>
+<th>영역</th>
+<th>규모</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>네트워크 백본</td>
+<td><strong>12종 약 2,000대</strong> 설계·구매 — 당해년도 업계 최대 단일발주</td>
+</tr>
+<tr>
+<td>보안장비</td>
+<td>6종 (IDS / IPS / DDoS)</td>
+</tr>
+<tr>
+<td>설비</td>
+<td>냉각탑 · 발전기 · 배터리 · 항온항습</td>
+</tr>
+<tr>
+<td>비용</td>
+<td>집행 총괄</td>
+</tr>
+</tbody>
+</table>
+<p>같은 시기에 회선 구조 문제를 <a href="p11-neutral-dc.html">별도 트랙으로 풀었습니다</a> —
+방통위 중재와 중립 데이터센터 지위 확보.</p>
+<h2>4단계 — 준공 이후, 자가 인프라를 상품으로</h2>
+<p>완공된 인프라를 퍼블릭 클라우드 사업으로 전환하는 단계입니다.</p>
+<h3>기준선을 사내 개발자로 잡았다</h3>
+<blockquote>
+<p><strong>'네이버 개발자도 쓰는 클라우드'</strong></p>
+</blockquote>
+<p>사내 개발자가 실제로 선택할 수준을 상품 기준선으로 삼았습니다.
+내부 사용자가 안 쓰는 상품은 외부 고객도 안 씁니다. 이 기준이 기능 우선순위를 정리해 줬습니다.</p>
+<h3>원가에서 가격으로</h3>
+<ul>
+<li><strong>데이터센터 원가 구조(전력 · 공조 · 회선 · 상면) 기반 클라우드 상품 원가분석</strong></li>
+<li><strong>Billing / Metering 체계 기획</strong></li>
+</ul>
+<p>데이터센터를 직접 지어 원가 구조를 알고 있다는 점이 여기서 값을 했습니다.
+원가를 모르면 가격은 경쟁사를 보고 정하게 되고, 그러면 마진 구조가 무너집니다.</p>
+<h3>상품 기획</h3>
+<ul>
+<li>VPC PoC, Compute Delivery Processing, UI/UX 기획</li>
+<li><strong>LINE 글로벌(한 · 중 · 일) 망 구축</strong> — 국제 네트워크 PoP 설계·구축, 클라우드 Region 사업기획</li>
+<li>N드라이브 분산시스템 설계, 네이버 서버 자가설계</li>
+</ul>
+<hr />
+<h2>결과</h2>
+<ul>
+<li><strong>춘천 데이터센터</strong> — 연구과제에서 준공까지, 그리고 퍼블릭 클라우드 사업으로의 전환</li>
+<li>PUE 기반 데이터센터 원가 판단 기준</li>
+<li>원가 구조에서 출발한 클라우드 상품 가격·Billing 체계</li>
+</ul>
+<h2>회고</h2>
+<p><strong>5년짜리 프로젝트의 핵심은 1단계였습니다.</strong>
+부지선정과 설비 구성의 모든 판단이 결국 타당성 연구에서 만든 원가 모델 위에서 이뤄졌습니다.
+"지을까 말까"를 판단하려고 만든 도구가, 짓기로 한 다음에도 계속 쓰였습니다.</p>
+<p><strong>인프라를 직접 지어본 경험이 이후 모든 비용 판단의 기준이 됐습니다.</strong>
+전력·공조·회선·상면이 원가에서 차지하는 비중을 알고 나면, 클라우드 청구서를 다르게 읽게 됩니다.
+<a href="p09-cost.html">트렌비의 TCO 기반 의사결정 체계</a>와
+<a href="c-insoft.html">아이엔소프트의 클라우드 상품 원가 검증</a>이 전부 여기서 나왔습니다.</p>
+<hr />
+<p><strong>관련 케이스</strong> — <a href="p11-neutral-dc.html">중립 데이터센터 지위 확보</a> · <a href="p09-cost.html">클라우드 비용 최적화</a></p>
+<p><code>데이터센터 설계·조달</code> <code>PUE</code> <code>투자심의</code> <code>원가분석</code> <code>Billing/Metering</code> <code>VPC 기획</code> <code>국제 PoP</code></p>
+</main>
+</div>
+</body>
+</html>

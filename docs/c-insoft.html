@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>아이엔소프트 · 신윤상 Portfolio</title>
+<meta name="description" content="신윤상 — SRE · Cloud Native &amp; Security Architect 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-soft: #131a23;
+  --bg-card: #161d27;
+  --line: #232c38;
+  --line-soft: #1c242f;
+  --fg: #d8dee6;
+  --fg-dim: #8b97a6;
+  --fg-faint: #616d7c;
+  --accent: #58a6ff;
+  --accent-dim: #2f5f96;
+  --green: #4ec9a5;
+  --amber: #d4a548;
+  --head: #f0f4f8;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff; --bg-soft: #f6f8fa; --bg-card: #ffffff;
+    --line: #d5dce4; --line-soft: #e6ebf0;
+    --fg: #27313d; --fg-dim: #5c6773; --fg-faint: #8a939e;
+    --accent: #0a5fc4; --accent-dim: #9dbde4;
+    --green: #17795e; --amber: #8a6416; --head: #10233a;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { display: flex; max-width: 1180px; margin: 0 auto; gap: 0; }
+
+/* ---------- sidebar ---------- */
+aside {
+  width: 232px; flex: 0 0 232px; border-right: 1px solid var(--line);
+  padding: 34px 20px 60px 16px; position: sticky; top: 0; height: 100vh;
+  overflow-y: auto;
+}
+aside .brand { display: block; text-decoration: none; margin-bottom: 26px; }
+aside .brand b { display: block; font-size: 17px; font-weight: 700; color: var(--head); letter-spacing: -0.2px; }
+aside .brand span { display: block; font-size: 11.5px; color: var(--fg-faint); margin-top: 2px; letter-spacing: 0.2px; }
+aside .navlabel {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.1px;
+  color: var(--fg-faint); margin: 22px 0 7px 10px; font-weight: 700;
+}
+aside .navsub {
+  font-size: 11px; color: var(--fg-faint); margin: 13px 0 4px 10px; font-weight: 600;
+  padding-top: 8px; border-top: 1px dashed var(--line-soft);
+}
+aside .navsub:first-of-type { border-top: 0; padding-top: 0; margin-top: 4px; }
+aside a.nav {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 6px;
+  padding: 6px 10px; border-radius: 6px; text-decoration: none;
+  color: var(--fg-dim); font-size: 13.5px; line-height: 1.4;
+}
+aside a.nav em { font-style: normal; font-size: 10.5px; color: var(--fg-faint); font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+aside a.nav:hover { background: var(--bg-soft); color: var(--fg); }
+aside a.nav.on { background: var(--bg-soft); color: var(--accent); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+aside .foot { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--fg-faint); }
+aside .foot a { color: var(--fg-dim); text-decoration: none; display: block; padding: 3px 0; }
+aside .foot a:hover { color: var(--accent); }
+
+/* ---------- content ---------- */
+main { flex: 1 1 auto; min-width: 0; padding: 38px 40px 100px; }
+main > :first-child { margin-top: 0; }
+
+h1 { font-size: 30px; font-weight: 700; color: var(--head); letter-spacing: -0.7px; margin: 0 0 6px; line-height: 1.25; }
+h2 {
+  font-size: 19px; font-weight: 700; color: var(--head); letter-spacing: -0.3px;
+  margin: 44px 0 14px; padding-bottom: 7px; border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 15.5px; font-weight: 600; color: var(--head); margin: 28px 0 9px; }
+p { margin: 0 0 13px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+blockquote {
+  margin: 18px 0; padding: 12px 18px; border-left: 3px solid var(--accent-dim);
+  background: var(--bg-soft); border-radius: 0 7px 7px 0; color: var(--fg-dim);
+}
+blockquote p { margin: 0 0 8px; }
+blockquote p:last-child { margin: 0; }
+blockquote strong { color: var(--green); }
+
+ul, ol { padding-left: 20px; margin: 0 0 14px; }
+li { margin-bottom: 5px; }
+li::marker { color: var(--fg-faint); }
+strong { color: var(--head); font-weight: 600; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+code {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+  padding: 1.5px 6px; border-radius: 5px; color: var(--fg-dim);
+}
+pre {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 9px; padding: 15px 18px; overflow-x: auto; margin: 0 0 16px;
+}
+pre code { background: none; border: 0; padding: 0; font-size: 12.5px; line-height: 1.75; color: var(--fg-dim); }
+
+table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: 13.5px; display: block; overflow-x: auto; }
+th {
+  background: var(--bg-soft); color: var(--head); font-weight: 600;
+  text-align: left; padding: 8px 12px; border: 1px solid var(--line); white-space: nowrap;
+}
+td { padding: 8px 12px; border: 1px solid var(--line-soft); vertical-align: top; }
+tr:hover td { background: var(--bg-soft); }
+
+img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); margin: 8px 0 18px; display: block; }
+img.badge { display: inline-block; height: 20px; width: auto; border: 0; border-radius: 4px; margin: 0 5px 8px 0; vertical-align: middle; }
+p.badges { margin-bottom: 8px; }
+
+/* header block under h1 */
+h1 + p { color: var(--fg-dim); font-size: 14.5px; }
+
+@media (max-width: 860px) {
+  .wrap { flex-direction: column; }
+  aside {
+    width: auto; flex: none; position: static; height: auto;
+    border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 20px 16px;
+  }
+  main { padding: 26px 20px 70px; }
+  h1 { font-size: 25px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <a class="brand" href="index.html">
+    <b>신윤상</b>
+    <span>SRE · Security · Governance</span>
+  </a>
+  <a class="nav" href="index.html">전체 개요</a>
+  <div class="navlabel">프로젝트 케이스</div>
+  <div class="navsub">신뢰성 · 장애관리</div>
+  <a class="nav" href="p01-incident-framework.html">장애관리 프레임워크<em>무신사</em></a>
+  <a class="nav" href="p02-slo.html">전사 SLO 체계<em>무신사</em></a>
+  <a class="nav" href="p03-drill.html">비상대응훈련<em>무신사</em></a>
+  <a class="nav" href="p04-automation.html">신뢰성 자동화<em>무신사</em></a>
+  <div class="navsub">거버넌스 · 보안 · 규제</div>
+  <a class="nav" href="p05-ai-governance.html">AI 거버넌스<em>진행 중</em></a>
+  <a class="nav" href="p06-privacy.html">개인정보 사고대응<em>트렌비</em></a>
+  <a class="nav" href="p07-security.html">보안·ISMS-P 대응<em>3개 조직</em></a>
+  <a class="nav" href="p10-fin-compliance.html">금융권 규제<em>넥스클라우드</em></a>
+  <div class="navsub">플랫폼 · 비용</div>
+  <a class="nav" href="p08-eks.html">EKS 플랫폼 리빌드<em>트렌비</em></a>
+  <a class="nav" href="p09-cost.html">비용·제3자 리스크<em>트렌비</em></a>
+  <div class="navsub">인프라 · 대외협력</div>
+  <a class="nav" href="p11-neutral-dc.html">중립 데이터센터<em>NAVER</em></a>
+  <a class="nav" href="p12-chuncheon-dc.html">춘천 데이터센터<em>NAVER</em></a>
+  <div class="navlabel">근무 기업</div>
+  <a class="nav" href="c-musinsa.html">무신사<em>2025.01 –</em></a>
+  <a class="nav" href="c-trenbe.html">트렌비<em>2021 – 2024</em></a>
+  <a class="nav" href="c-nexcloud.html">넥스클라우드<em>2020 – 2021</em></a>
+  <a class="nav" href="c-osc-korea.html">OSC Korea<em>2020</em></a>
+  <a class="nav" href="c-starlabs.html">스타랩스<em>2018 – 2020</em></a>
+  <a class="nav on" href="c-insoft.html">아이엔소프트<em>2016 – 2018</em></a>
+  <a class="nav" href="c-naver.html">NAVER<em>2002 – 2014</em></a>
+  <a class="nav" href="c-yahoo-korea.html">Yahoo Korea<em>2006 – 2007</em></a>
+  <div class="foot">
+    <a href="https://www.linkedin.com/in/yoonsang-shin-859b8b1a2" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="mailto:sysang0891@gmail.com">sysang0891@gmail.com</a>
+  </div>
+</aside>
+<main>
+<p><a href="index.html">← 포트폴리오</a></p>
+<h1>아이엔소프트</h1>
+<p><strong>컨설팅 · PO / PM</strong>
+<code>2016.05 – 2018.10</code></p>
+<hr />
+<h2>이 시기의 상황</h2>
+<p>엔터프라이즈가 자체 클라우드를 갖추려 할 때, 기술 구성은 참조할 곳이 있었지만
+<strong>무엇이 제품이 되고 무엇이 원가가 되는지</strong>를 판단할 사람이 없었습니다.</p>
+<h2>맡은 범위</h2>
+<p>현대오토에버(HKMC) · 롯데정보통신 · SK텔레콤 프로젝트의 PO / PM.
+기술 선택이 아니라 <strong>상품 구조와 원가 구조를 결정하는 자리</strong>였습니다.</p>
+<h2>주요 업무</h2>
+<p><strong>현대오토에버 Private Cloud (HKMC) — PO / PM</strong></p>
+<ul>
+<li>OpenStack 기반 Private Cloud의 <strong>신청 · 승인 · 할당 · 회수 서비스 프로세스와 UI/UX를 직접 정의</strong></li>
+<li><a href="p12-chuncheon-dc.html">네이버 클라우드에서 수행한 Compute Delivery · Billing 기획</a>을 엔터프라이즈 사내 클라우드 구조에 이식</li>
+</ul>
+<p>사내 클라우드가 실패하는 지점은 대개 기술이 아니라 신청·승인 절차입니다.
+누가 얼마나 쓸 수 있고 언제 회수되는지가 정해져 있지 않으면 리소스는 반드시 방치됩니다.</p>
+<p><strong>롯데정보통신 클라우드사업 — 전략파트너 PO</strong></p>
+<ul>
+<li>CMP(Cloud Management Platform) 공동사업 기획 — TCO 분석으로 상품 원가 구조와 가격 경쟁력 검증</li>
+<li><strong>DRaaS(Disaster Recovery as a Service) 비즈니스 모델 설계</strong> — 재해복구를 반복 판매 가능한 상품으로 정의</li>
+</ul>
+<p>DRaaS 상품화에서 다룬 RTO/RPO 기준 설정, 복구 등급별 원가 차이, 훈련 주기 설계가
+이후 업무연속성 관점의 작업으로 이어집니다.</p>
+<p><strong>SK텔레콤 IT자산 관리·구매 Process Innovation — 컨설팅·개발 PM</strong></p>
+<ul>
+<li>IT자산 관리와 구매 프로세스를 재설계하고 시스템 개발까지 총괄</li>
+<li>부문별 IT자산 정합도 · 관리역량을 임원 대상으로 정기 보고 — 자산·원가 데이터를 경영 판단에 바로 쓸 수 있는 형태로 제공</li>
+</ul>
+</main>
+</div>
+</body>
+</html>

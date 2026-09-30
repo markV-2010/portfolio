@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 거버넌스 · 신윤상 Portfolio</title>
+<meta name="description" content="신윤상 — SRE · Cloud Native &amp; Security Architect 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-soft: #131a23;
+  --bg-card: #161d27;
+  --line: #232c38;
+  --line-soft: #1c242f;
+  --fg: #d8dee6;
+  --fg-dim: #8b97a6;
+  --fg-faint: #616d7c;
+  --accent: #58a6ff;
+  --accent-dim: #2f5f96;
+  --green: #4ec9a5;
+  --amber: #d4a548;
+  --head: #f0f4f8;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff; --bg-soft: #f6f8fa; --bg-card: #ffffff;
+    --line: #d5dce4; --line-soft: #e6ebf0;
+    --fg: #27313d; --fg-dim: #5c6773; --fg-faint: #8a939e;
+    --accent: #0a5fc4; --accent-dim: #9dbde4;
+    --green: #17795e; --amber: #8a6416; --head: #10233a;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { display: flex; max-width: 1180px; margin: 0 auto; gap: 0; }
+
+/* ---------- sidebar ---------- */
+aside {
+  width: 232px; flex: 0 0 232px; border-right: 1px solid var(--line);
+  padding: 34px 20px 60px 16px; position: sticky; top: 0; height: 100vh;
+  overflow-y: auto;
+}
+aside .brand { display: block; text-decoration: none; margin-bottom: 26px; }
+aside .brand b { display: block; font-size: 17px; font-weight: 700; color: var(--head); letter-spacing: -0.2px; }
+aside .brand span { display: block; font-size: 11.5px; color: var(--fg-faint); margin-top: 2px; letter-spacing: 0.2px; }
+aside .navlabel {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.1px;
+  color: var(--fg-faint); margin: 22px 0 7px 10px; font-weight: 700;
+}
+aside .navsub {
+  font-size: 11px; color: var(--fg-faint); margin: 13px 0 4px 10px; font-weight: 600;
+  padding-top: 8px; border-top: 1px dashed var(--line-soft);
+}
+aside .navsub:first-of-type { border-top: 0; padding-top: 0; margin-top: 4px; }
+aside a.nav {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 6px;
+  padding: 6px 10px; border-radius: 6px; text-decoration: none;
+  color: var(--fg-dim); font-size: 13.5px; line-height: 1.4;
+}
+aside a.nav em { font-style: normal; font-size: 10.5px; color: var(--fg-faint); font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+aside a.nav:hover { background: var(--bg-soft); color: var(--fg); }
+aside a.nav.on { background: var(--bg-soft); color: var(--accent); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+aside .foot { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--fg-faint); }
+aside .foot a { color: var(--fg-dim); text-decoration: none; display: block; padding: 3px 0; }
+aside .foot a:hover { color: var(--accent); }
+
+/* ---------- content ---------- */
+main { flex: 1 1 auto; min-width: 0; padding: 38px 40px 100px; }
+main > :first-child { margin-top: 0; }
+
+h1 { font-size: 30px; font-weight: 700; color: var(--head); letter-spacing: -0.7px; margin: 0 0 6px; line-height: 1.25; }
+h2 {
+  font-size: 19px; font-weight: 700; color: var(--head); letter-spacing: -0.3px;
+  margin: 44px 0 14px; padding-bottom: 7px; border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 15.5px; font-weight: 600; color: var(--head); margin: 28px 0 9px; }
+p { margin: 0 0 13px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+blockquote {
+  margin: 18px 0; padding: 12px 18px; border-left: 3px solid var(--accent-dim);
+  background: var(--bg-soft); border-radius: 0 7px 7px 0; color: var(--fg-dim);
+}
+blockquote p { margin: 0 0 8px; }
+blockquote p:last-child { margin: 0; }
+blockquote strong { color: var(--green); }
+
+ul, ol { padding-left: 20px; margin: 0 0 14px; }
+li { margin-bottom: 5px; }
+li::marker { color: var(--fg-faint); }
+strong { color: var(--head); font-weight: 600; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+code {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+  padding: 1.5px 6px; border-radius: 5px; color: var(--fg-dim);
+}
+pre {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 9px; padding: 15px 18px; overflow-x: auto; margin: 0 0 16px;
+}
+pre code { background: none; border: 0; padding: 0; font-size: 12.5px; line-height: 1.75; color: var(--fg-dim); }
+
+table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: 13.5px; display: block; overflow-x: auto; }
+th {
+  background: var(--bg-soft); color: var(--head); font-weight: 600;
+  text-align: left; padding: 8px 12px; border: 1px solid var(--line); white-space: nowrap;
+}
+td { padding: 8px 12px; border: 1px solid var(--line-soft); vertical-align: top; }
+tr:hover td { background: var(--bg-soft); }
+
+img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); margin: 8px 0 18px; display: block; }
+img.badge { display: inline-block; height: 20px; width: auto; border: 0; border-radius: 4px; margin: 0 5px 8px 0; vertical-align: middle; }
+p.badges { margin-bottom: 8px; }
+
+/* header block under h1 */
+h1 + p { color: var(--fg-dim); font-size: 14.5px; }
+
+@media (max-width: 860px) {
+  .wrap { flex-direction: column; }
+  aside {
+    width: auto; flex: none; position: static; height: auto;
+    border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 20px 16px;
+  }
+  main { padding: 26px 20px 70px; }
+  h1 { font-size: 25px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <a class="brand" href="index.html">
+    <b>신윤상</b>
+    <span>SRE · Security · Governance</span>
+  </a>
+  <a class="nav" href="index.html">전체 개요</a>
+  <div class="navlabel">프로젝트 케이스</div>
+  <div class="navsub">신뢰성 · 장애관리</div>
+  <a class="nav" href="p01-incident-framework.html">장애관리 프레임워크<em>무신사</em></a>
+  <a class="nav" href="p02-slo.html">전사 SLO 체계<em>무신사</em></a>
+  <a class="nav" href="p03-drill.html">비상대응훈련<em>무신사</em></a>
+  <a class="nav" href="p04-automation.html">신뢰성 자동화<em>무신사</em></a>
+  <div class="navsub">거버넌스 · 보안 · 규제</div>
+  <a class="nav on" href="p05-ai-governance.html">AI 거버넌스<em>진행 중</em></a>
+  <a class="nav" href="p06-privacy.html">개인정보 사고대응<em>트렌비</em></a>
+  <a class="nav" href="p07-security.html">보안·ISMS-P 대응<em>3개 조직</em></a>
+  <a class="nav" href="p10-fin-compliance.html">금융권 규제<em>넥스클라우드</em></a>
+  <div class="navsub">플랫폼 · 비용</div>
+  <a class="nav" href="p08-eks.html">EKS 플랫폼 리빌드<em>트렌비</em></a>
+  <a class="nav" href="p09-cost.html">비용·제3자 리스크<em>트렌비</em></a>
+  <div class="navsub">인프라 · 대외협력</div>
+  <a class="nav" href="p11-neutral-dc.html">중립 데이터센터<em>NAVER</em></a>
+  <a class="nav" href="p12-chuncheon-dc.html">춘천 데이터센터<em>NAVER</em></a>
+  <div class="navlabel">근무 기업</div>
+  <a class="nav" href="c-musinsa.html">무신사<em>2025.01 –</em></a>
+  <a class="nav" href="c-trenbe.html">트렌비<em>2021 – 2024</em></a>
+  <a class="nav" href="c-nexcloud.html">넥스클라우드<em>2020 – 2021</em></a>
+  <a class="nav" href="c-osc-korea.html">OSC Korea<em>2020</em></a>
+  <a class="nav" href="c-starlabs.html">스타랩스<em>2018 – 2020</em></a>
+  <a class="nav" href="c-insoft.html">아이엔소프트<em>2016 – 2018</em></a>
+  <a class="nav" href="c-naver.html">NAVER<em>2002 – 2014</em></a>
+  <a class="nav" href="c-yahoo-korea.html">Yahoo Korea<em>2006 – 2007</em></a>
+  <div class="foot">
+    <a href="https://www.linkedin.com/in/yoonsang-shin-859b8b1a2" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="mailto:sysang0891@gmail.com">sysang0891@gmail.com</a>
+  </div>
+</aside>
+<main>
+<p><a href="index.html">← 포트폴리오</a> · <a href="c-musinsa.html">무신사</a></p>
+<h1>AI 거버넌스 프레임워크</h1>
+<blockquote>
+<p>사내 AI 활용을 금지가 아니라 <strong>통제 가능한 형태</strong>로 만드는 작업. 설계 기준은 하나 — 생산성을 저해하지 않는 수준의 통제 범위.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>조직</th>
+<th>시기</th>
+<th>역할</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>무신사</td>
+<td>2025 –</td>
+<td>수립 진행 중</td>
+<td><strong>진행 중</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>문제</h2>
+<p>AI 거버넌스는 두 방향으로 실패합니다.</p>
+<ul>
+<li><strong>금지로 시작하면</strong> 사람들이 개인 계정으로 씁니다. 통제는 사라지고 리스크만 음지로 갑니다.</li>
+<li><strong>방임하면</strong> 어디에 무엇이 들어갔는지 아무도 모릅니다. 문제가 생긴 뒤에야 범위를 파악하게 됩니다.</li>
+</ul>
+<p>그리고 대부분의 AI 가이드라인은 <strong>AI를 쓰지 않는 사람이 씁니다.</strong> 그래서 실제 업무에서 어디가 걸리는지를 못 짚습니다.</p>
+<h2>접근</h2>
+<p>저는 <strong>AI를 실제로 쓰는 쪽</strong>에 있습니다.
+장애 대응 자동화, 알림 보강, 훈련 채점에 LLM을 붙여 운영하면서 나온 문제들이 곧 통제 지점이었습니다.
+가이드라인을 먼저 쓰고 적용하는 순서가 아니라, <strong>운영에서 나온 경계를 프레임워크로 환원</strong>하는 순서로 만들고 있습니다.</p>
+<h2>설계 기준</h2>
+<h3>1. 자동화 경계 — 무엇을 AI가 판단하고 무엇을 사람이 지휘하는가</h3>
+<p>가장 어려운 부분은 기술이 아니라 여기였습니다.
+장애 대응 프로세스에 그 기준선을 명시하고 있습니다.</p>
+<table>
+<thead>
+<tr>
+<th>AI가 하는 것</th>
+<th>사람이 하는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>정보 수집 · 정규화 · 요약</td>
+<td><strong>선언 · 등급 확정 · 조치 선택</strong></td>
+</tr>
+<tr>
+<td>과거 사례 · 관련 문서 제시</td>
+<td><strong>고객 영향 판단과 공지 결정</strong></td>
+</tr>
+<tr>
+<td>루브릭 기반 1차 채점</td>
+<td><strong>최종 평가와 재실시 결정</strong></td>
+</tr>
+</tbody>
+</table>
+<p>원칙은 단순합니다. <strong>되돌릴 수 없는 결정과 대외적 책임이 걸린 결정은 사람이 합니다.</strong>
+그 외의 것은 AI가 먼저 해도 되고, 사람은 검토자로 남습니다.</p>
+<h3>2. 운영에서 도출한 통제 지점</h3>
+<p>LLM 적용 3건(<a href="p04-automation.html">신뢰성 자동화</a>, <a href="p03-drill.html">훈련 채점</a>)을
+직접 개발·운영하면서 나온 항목들입니다.</p>
+<ul>
+<li><strong>입력 데이터 범위</strong> — 무엇을 모델에 넣어도 되는가. 로그·티켓·문서 각각의 경계</li>
+<li><strong>출력 검증</strong> — 모델 출력을 어디까지 신뢰하고 어디서 확인하는가</li>
+<li><strong>실패 시 폴백</strong> — 모델이 응답하지 않거나 틀렸을 때 프로세스가 계속 굴러가는가</li>
+<li><strong>기록</strong> — 어떤 판단에 AI가 관여했는지가 남는가</li>
+</ul>
+<h3>3. 생산성을 저해하지 않는다</h3>
+<p>통제 항목을 늘리는 것은 쉽습니다. 어려운 건 <strong>넣지 않을 것을 고르는 일</strong>입니다.
+승인 절차 하나가 추가되면 그 도구는 안 쓰이게 되고, 안 쓰이면 통제할 대상도 사라집니다.</p>
+<hr />
+<h2>배경 — 규제 환경</h2>
+<p>국내 <strong>AI 기본법</strong>이 2026년 1월 22일 시행되면서, 모델 개발사뿐 아니라 <strong>외부 AI를 활용하는 이용사업자</strong>도
+의무 주체에 포함됐습니다. 생성형 AI 투명성 고지, 고영향 AI 책무, 영향평가 등이 여기에 걸립니다.
+사내 AI 사용 기준을 정리해 두는 일이 자율 과제에서 준수 과제로 옮겨가는 중입니다.</p>
+<h2>현재 상태</h2>
+<p>수립 진행 중입니다. 완성된 결과물이 아니라 <strong>운영하면서 만들어 가는 문서</strong>로 두고 있습니다.</p>
+<hr />
+<h2>회고 (중간)</h2>
+<blockquote>
+<p>어려운 건 AI가 아니라 경계를 정하는 쪽입니다 — 무엇을 자동화하고 무엇은 사람이 지휘할지.</p>
+</blockquote>
+<p><strong>쓰는 사람이 쓰는 기준을 만들어야 합니다.</strong> AI를 안 써 본 사람이 만든 가이드라인은
+실제 업무 흐름에서 어디가 걸리는지를 못 짚어서, 결과적으로 지켜지지 않거나 생산성을 깎습니다.</p>
+<hr />
+<p><strong>관련 케이스</strong> — <a href="p04-automation.html">신뢰성 자동화</a> · <a href="p03-drill.html">비상대응훈련 프로그램</a> · <a href="p07-security.html">클라우드 보안 프레임워크</a></p>
+<p><code>AI 거버넌스</code> <code>AI 기본법</code> <code>자동화 경계</code> <code>휴먼인더루프</code> <code>LLM 운영</code></p>
+</main>
+</div>
+</body>
+</html>
