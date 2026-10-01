@@ -19,7 +19,8 @@
 
 ## 케이스
 
-- **[개인정보 유출 사고 대응](../projects/06-privacy-incident-response.md)** — CPO로서 규제기관 현장점검까지 지휘, 과징금 없이 종결
+- **[보안 거버넌스 — 정보보호위원회와 조직 리딩](../projects/13-security-governance.md)** — 정보보호위원회 운영, 약관에 고지된 공식 CPO, 정책 체계 수립
+- **[개인정보 유출 사고 대응](../projects/06-privacy-incident-response.md)** — CPO로서 규제기관 현장점검까지 지휘, 과징금 없이 종결, 이후 3년간 시정조치·개선권고 이행보고
 - **[클라우드 보안 프레임워크 · ISMS-P](../projects/07-cloud-security-framework.md)** — Layer × Component 매트릭스, Identity 기반 망분리
 - **[EKS 플랫폼 리빌드](../projects/08-eks-platform-rebuild.md)** — 가용성 99.98%, Instance/Zone/Region Fail 상시 검증
 - **[클라우드 비용 최적화와 제3자 의존성 제거](../projects/09-cloud-cost-optimization.md)** — 43.9% 절감, MSP 기술지원 미수령 자체 운영 전환
@@ -36,4 +37,4 @@
 
 ## 남은 것
 
-3년여 보안 무사고 · 가용성 99.98% · 월 인프라 비용 43.9% 절감 · 외부 사업자 없이 인프라를 운영할 수 있는 내부 역량
+3년여 보안 무사고 · 정보보호위원회와 정책 체계 · 무중단 서비스와 연간 가용성 99.98% · 월 인프라 비용 43.9% 절감 · 외부 사업자 없이 인프라를 운영할 수 있는 내부 역량

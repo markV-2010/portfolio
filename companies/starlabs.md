@@ -19,6 +19,7 @@
 ## 케이스
 
 - **[클라우드 보안 프레임워크 · ISMS-P](../projects/07-cloud-security-framework.md)**
+  **ISMS-P 심사 대응 스크럼마스터**로 보안 프레임워크와 가이드라인을 제시(망분리 VDI 통제 포함).
   별도 장비 없이 AWS Managed Service만으로 ISMS-P 요건을 충족하는 프레임워크를 설계해 심사 승인.
   LG화학 · LG디스플레이 · LG CNS 운영 가이던스로 확산했고, 이후 [트렌비 보안 프레임워크](trenbe.md)의 원형이 됐습니다.
 

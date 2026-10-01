@@ -58,9 +58,9 @@ ElasticSearch → Loki + Promtail, 상용 DB → Percona로 가면서 **상용 �
 
 | 시나리오 | 방식 |
 |---|---|
-| Instance Fail | 상시 검증 |
-| Zone Fail | **Active** — 실제 장애 시 서비스 지속 |
-| Region Fail | **Standby** — 복구 절차 검증 |
+| Instance Fail | **실제 장애 주입** — 상시 검증 |
+| Availability Zone Fail | **실제 장애 주입** (Active) — 장애 중 서비스 지속 확인 |
+| Region Fail | **Standby 복구 절차 점검** — 주입이 아닌 절차 검증 |
 
 Zone은 Active로, Region은 Standby로 둔 것은 비용 판단이었습니다.
 Region Active는 비용이 배로 드는데, 당시 서비스의 손실 규모가 그것을 정당화하지 못했습니다.
@@ -77,7 +77,7 @@ Region Active는 비용이 배로 드는데, 당시 서비스의 손실 규모�
 
 ## 결과
 
-> **가용성 99.98%** — 같은 기간 월 인프라 비용 43.9% 절감
+> **무중단 서비스와 연간 가용성 99.98% 목표 달성** — 같은 기간 월 인프라 비용 43.9% 절감
 
 - 배포가 선언적으로 바뀌면서 롤백이 절차에서 커밋으로 내려옴
 - Staging 검증이 prod를 실제로 반영하게 됨

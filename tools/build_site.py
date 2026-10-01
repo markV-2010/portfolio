@@ -33,6 +33,7 @@ PROJECTS = [
     ("projects/10-financial-container-compliance.md", "p10-fin-compliance.html", "금융권 규제", "넥스클라우드"),
     ("projects/11-neutral-datacenter.md", "p11-neutral-dc.html", "중립 데이터센터", "NAVER"),
     ("projects/12-chuncheon-datacenter.md", "p12-chuncheon-dc.html", "춘천 데이터센터", "NAVER"),
+    ("projects/13-security-governance.md", "p13-governance.html", "보안 거버넌스", "트렌비"),
 ]
 
 COMPANIES = [
@@ -56,7 +57,7 @@ SLUGS = {
 
 PROJECT_GROUPS = [
     ("신뢰성 · 장애관리", PROJECTS[0:4]),
-    ("거버넌스 · 보안 · 규제", [PROJECTS[4], PROJECTS[5], PROJECTS[6], PROJECTS[9]]),
+    ("거버넌스 · 보안 · 규제", [PROJECTS[12], PROJECTS[5], PROJECTS[6], PROJECTS[9], PROJECTS[4]]),
     ("플랫폼 · 비용", [PROJECTS[7], PROJECTS[8]]),
     ("인프라 · 대외협력", PROJECTS[10:12]),
 ]

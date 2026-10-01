@@ -5,7 +5,8 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-yoonsang--shin-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yoonsang-shin-859b8b1a2)
 ![Experience](https://img.shields.io/badge/경력-20년-1b3a5c?style=flat-square)
-![Cases](https://img.shields.io/badge/케이스-12건-2d6a4f?style=flat-square)
+![Cases](https://img.shields.io/badge/케이스-13건-2d6a4f?style=flat-square)
+![Regulators](https://img.shields.io/badge/규제기관_대응-6곳-8a5a1b?style=flat-square)
 
 ---
 
@@ -39,9 +40,10 @@
 
 | 케이스 | 조직 | 핵심 |
 |---|---|---|
+| **[보안 거버넌스 — 정보보호위원회와 조직 리딩](projects/13-security-governance.md)** | 트렌비 | 정보보호위원회 운영, 약관에 고지된 공식 CPO, 정책 체계와 승인 구조 수립 |
 | **[AI 거버넌스 프레임워크](projects/05-ai-governance.md)** `진행 중` | 무신사 | 생산성을 저해하지 않는 통제 범위. 자동화 경계 — 무엇을 AI가 판단하고 무엇을 사람이 지휘할지 |
-| **[개인정보 유출 사고 대응](projects/06-privacy-incident-response.md)** | 트렌비 | CPO로서 사고 발생부터 규제기관 현장점검까지 지휘. **과징금 없이 종결** |
-| **[클라우드 보안 프레임워크 · ISMS-P](projects/07-cloud-security-framework.md)** | 스타랩스 → 트렌비 → 무신사 | 별도 장비 없이 관리형 서비스만으로 심사 승인. 망분리를 Identity 기반 ZTNA로 구현 |
+| **[개인정보 유출 사고 대응](projects/06-privacy-incident-response.md)** | 트렌비 | CPO로서 사고 발생부터 규제기관 현장점검까지 지휘. **과징금 없이 종결**, 이후 3년간 시정조치·개선권고 이행보고 |
+| **[클라우드 보안 프레임워크 · ISMS-P](projects/07-cloud-security-framework.md)** | 스타랩스 → 트렌비 → 무신사 | 별도 장비 없이 관리형 서비스만으로 심사 승인. 망분리를 **VDI → ZTNA → 클라우드 작업환경 분리** 세 방식으로 |
 | **[금융권 컨테이너 도입 — 금감원 소명자료](projects/10-financial-container-compliance.md)** | 넥스클라우드 | 선례가 없던 시점에 통제 항목 × 구현 수단 매핑으로 규제 근거 수립 |
 
 ### 플랫폼 · 비용
@@ -55,7 +57,7 @@
 
 | 케이스 | 조직 | 핵심 |
 |---|---|---|
-| **[중립 데이터센터 지위 확보](projects/11-neutral-datacenter.md)** | NAVER | 방통위 중재 승소로 타사 회선 수용 확보. **통신사 약관 개정** |
+| **[중립 데이터센터 지위 확보](projects/11-neutral-datacenter.md)** | NAVER | 방통위 중재 승소로 타사 회선 수용 확보, **통신사 약관 개정**. 공정위 조사·고용노동부 현장점검 대응 포함 |
 | **[춘천 데이터센터](projects/12-chuncheon-datacenter.md)** | NAVER | 타당성 연구 PL부터 준공, 퍼블릭 클라우드 상품화까지 약 5년 |
 
 ---
@@ -65,7 +67,7 @@
 | 기간 | 조직 | 역할 | 케이스 |
 |---|---|---|---|
 | 2025.01 – 재직 중 | **[무신사](companies/musinsa.md)** | SRE · 전사 장애관리 Incident Owner | 01 · 02 · 03 · 04 · 05 · 07 |
-| 2021.06 – 2024.12 | **[트렌비](companies/trenbe.md)** | SRE Lead 겸 CISO·CPO | 06 · 07 · 08 · 09 |
+| 2021.06 – 2024.12 | **[트렌비](companies/trenbe.md)** | SRE Lead 겸 CISO·CPO | 06 · 07 · 08 · 09 · 13 |
 | 2020.09 – 2021.05 | **[넥스클라우드](companies/nexcloud.md)** | Consulting Team Leader | 10 |
 | 2020.02 – 2020.08 | **[OSC Korea](companies/osc-korea.md)** | Cloud Native Consultant | — |
 | 2018.11 – 2020.01 | **[스타랩스](companies/starlabs.md)** | Cloud Architecture / Governance Consulting | 07 |
@@ -82,7 +84,8 @@
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | 장애관리·업무연속성 | ● | ● | | ○ | | ○ | ● | |
 | SLO/SLI·신뢰성 공학 | ● | ● | | ○ | | | | |
-| 정보보호·인증심사 | ○ | ● | ○ | | ● | | ○ | ○ |
+| 정보보호·인증심사 | ● | ● | ○ | | ● | | ○ | ○ |
+| 보안 거버넌스·조직 리딩 | ● | ● | | | | | ○ | |
 | 규제·감독기관 대응 | | ● | ● | | ● | | ● | |
 | 제3자 리스크·계약 | | ● | | | | ● | ● | |
 | 클라우드 아키텍처 | ● | ● | ● | ● | ● | ● | ● | |
@@ -100,7 +103,9 @@
 
 **통제 항목 × 구현 수단 매핑** — 규제 항목을 구조화하고, 각 항목에 대해 대체 수단의 동등성을 근거로 입증합니다.
 [ISMS-P 심사](projects/07-cloud-security-framework.md) · [금감원 소명](projects/10-financial-container-compliance.md) ·
-[개인정보 현장점검](projects/06-privacy-incident-response.md) · [방통위 중재](projects/11-neutral-datacenter.md)에 모두 같은 구조가 쓰였습니다.
+[개인정보보호위원회·KISA 현장점검](projects/06-privacy-incident-response.md) ·
+[방통위 중재 · 공정위 조사 · 고용노동부 현장점검](projects/11-neutral-datacenter.md) —
+**여섯 곳의 규제기관**을 같은 방식으로 대응했습니다.
 
 **예외가 아니라 규칙을 바꾼다** — 개별 승인은 사람이 바뀌면 사라지지만, 약관과 기준 문서는 남습니다.
 [통신사 약관 개정](projects/11-neutral-datacenter.md)에서 배운 것이
@@ -123,19 +128,27 @@
 
 ---
 
-## 문서
+## 경력기술서
 
-- **[이력서 PDF (IT 거버넌스 · BCP 버전)](resume/신윤상_프로필_IT거버넌스.pdf)** — 4페이지
-- 웹으로 보기 → **[GitHub Pages](https://markv-2010.github.io/portfolio/)**
+지원 포지션에 따라 강조점을 달리한 버전입니다. 사실관계는 동일하고 구성과 서술 비중만 다릅니다.
+
+| 버전 | 초점 |
+|---|---|
+| **[정보보안팀장](resume/신윤상_경력기술서_정보보안팀장.pdf)** | ISMS-P · 규제기관 대응 · 개인정보 · 3rd Party · 보안 거버넌스 |
+| **[IT 거버넌스 · BCP](resume/신윤상_경력기술서_IT거버넌스_BCP.pdf)** | 업무연속성 · 인증심사 · 제3자 리스크 · AI 거버넌스 |
+| **[IT Planning Team Leader](resume/신윤상_경력기술서_IT_Planning_Team_Leader.pdf)** | 내부통제 · 경영계획 · 투자심의 · 협의체 운영 |
+| **[SRE](resume/신윤상_경력기술서_SRE.pdf)** | 장애관리 · SLO · 플랫폼 · 신뢰성 자동화 |
+
+웹으로 보기 → **[GitHub Pages](https://markv-2010.github.io/portfolio/)**
 
 ## 저장소 구조
 
 ```
 ├── README.md              이 문서 — 케이스 인덱스 · 기업 인덱스 · 역량 맵
-├── projects/              프로젝트 케이스 12건 (본문)
+├── projects/              프로젝트 케이스 13건 (본문)
 ├── companies/             근무 기업 8곳 (맥락 인덱스)
 ├── assets/                다이어그램 · 차트
-├── resume/                이력서 PDF
+├── resume/                포지션별 경력기술서 PDF
 ├── tools/build_site.py    마크다운 → GitHub Pages 사이트 빌드
 └── docs/                  생성된 사이트 (GitHub Pages 소스)
 ```
