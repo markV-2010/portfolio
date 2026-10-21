@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.venv/
+venv/
+.idea/
+.vscode/
+
+# 개인 연락처가 든 이력서 PDF는 공개 저장소에 올리지 않는다
+resume/
+docs/resume/
+*.pdf
