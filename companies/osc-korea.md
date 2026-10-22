@@ -28,7 +28,7 @@ CNCF Landscape에는 프로젝트가 계속 늘고 있었지만, 국내에서 �
 
 - Public Cloud와 온프레미스 OpenStack(+Kubernetes) 연결 Hybrid 아키텍처 설계
 - Kubernetes Multi-Networking — EKS · AKS · GKE에 걸친 클러스터 간 네트워킹 구성 검증
-- **Chaos Engineering** — Gremlin 기반으로 현대자동차 Backend 서비스의 장애 내성 검증
+- **Chaos Engineering** — Gremlin 기반으로 제조 대기업 Backend 서비스의 장애 내성 검증
 
 **한진 택배시스템 Microservice & Cloud Native 컨설팅**
 
