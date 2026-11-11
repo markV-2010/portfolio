@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>키 소유자 콘솔 목업</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 레이아웃: 상단 조사 요약 → 화면 4개를 탭으로 보는 콘솔 목업 → 제품 기능과 화면 대응표 */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#1b2430; --muted:#5d6978; --line:#dfe3e9;
+  --accent:#1f5fbf; --accent-soft:#e6eefb;
+  --ok:#17794a; --ok-soft:#e3f4ea; --warn:#9a5b00; --warn-soft:#fdf0d8; --bad:#b42318; --bad-soft:#fde8e6;
+  --code-bg:#eef1f5;
+  --font:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161c; --surface:#1a2029; --ink:#e7ebf0; --muted:#98a3b1; --line:#2c3541;
+  --accent:#6ea2f2; --accent-soft:#1d2a40;
+  --ok:#5cc58e; --ok-soft:#173326; --warn:#e8b25a; --warn-soft:#3a2d14; --bad:#f08a80; --bad-soft:#3d1b18;
+  --code-bg:#232b36; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161c; --surface:#1a2029; --ink:#e7ebf0; --muted:#98a3b1; --line:#2c3541;
+  --accent:#6ea2f2; --accent-soft:#1d2a40;
+  --ok:#5cc58e; --ok-soft:#173326; --warn:#e8b25a; --warn-soft:#3a2d14; --bad:#f08a80; --bad-soft:#3d1b18;
+  --code-bg:#232b36; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.6;
+  padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1{font-size:24px;line-height:1.3;margin:0;text-wrap:balance}
+h2{font-size:17px;margin:0 0 4px;text-wrap:balance}
+h3{font-size:14px;margin:0}
+p{margin:0}
+.lead{color:var(--muted);max-width:68ch}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.note{background:var(--warn-soft);color:var(--warn);border:1px solid var(--line);padding:10px 14px;border-radius:6px;font-size:13px}
+section{display:flex;flex-direction:column;gap:14px;min-width:0}
+
+/* 레퍼런스 카드 */
+.refs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.ref{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ref ul{margin:0;padding-left:16px;color:var(--muted);font-size:13px}
+.ref .take{font-size:13px;border-top:1px solid var(--line);padding-top:8px}
+.ref .take b{color:var(--accent)}
+
+/* 콘솔 */
+.console{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;min-width:0}
+.bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--code-bg);flex-wrap:wrap}
+.dots{display:flex;gap:6px}.dots i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+.bar .url{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:2px;padding:0 10px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{font:inherit;background:none;border:0;border-bottom:2px solid transparent;padding:11px 12px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.tabs button:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.panel{padding:16px;display:flex;flex-direction:column;gap:14px}
+.panel[hidden]{display:none}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.stat{border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.stat .n{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.stat .l{font-size:12px;color:var(--muted)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:500;background:var(--code-bg)}
+tr:last-child td{border-bottom:0}
+code,.mono{font-family:var(--mono);font-size:12px}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)}.warn{background:var(--warn-soft);color:var(--warn)}.bad{background:var(--bad-soft);color:var(--bad)}.info{background:var(--accent-soft);color:var(--accent)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+select,input[type=text]{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
+.btn{font:inherit;padding:6px 12px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--bg);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.guard{border:1px solid var(--line);border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.guard.stop{border-color:var(--bad);background:var(--bad-soft)}
+.guard.go{border-color:var(--ok);background:var(--ok-soft)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+input[type=range]{flex:1;min-width:160px}
+
+/* 흐름도 */
+.flow{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch}
+.step{flex:1 1 130px;border:1px solid var(--line);border-radius:6px;padding:10px;background:var(--surface);font-size:12.5px;min-width:0}
+.step b{display:block;font-size:13px;margin-bottom:2px}
+.step.key{border-color:var(--accent);background:var(--accent-soft)}
+.arrow{align-self:center;color:var(--muted)}
+.map td:first-child{font-weight:500}
+.foot{font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:10px">
+  <span class="tag">JML 접속 키 관리 · 직접 구현 목업</span>
+  <h1>상용·오픈소스 레퍼런스에서 가져올 기능과, 직접 만들 때의 모습</h1>
+  <p class="lead">제품을 도입하지 않고 같은 수준의 기능을 자체 환경에 맞춰 만든다는 방향을 화면으로 그려 봤습니다. 아래 화면의 사람·키·건수는 모두 예시이며 확정 설계가 아닙니다.</p>
+  <div class="note">모든 데이터는 가상의 예시입니다. 연결표 입력 경로, 재활성화 가능 여부 등은 확인 전이라 "(가정)"으로 표시했습니다. 파일럿은 메신저와 시트로 시작하고, 이 콘솔은 전용 UI를 검토할 때의 모습입니다.</div>
+</header>
+
+<section>
+  <div><h2>1. 조사한 레퍼런스 중 대표 4갈래</h2>
+  <p class="lead">제품 이름보다 "어떤 기능을 가진 갈래인가"로 묶었습니다. 출처는 설계 문서에 따로 정리해 두었습니다.</p></div>
+  <div class="refs">
+    <article class="ref">
+      <span class="pill info" style="align-self:flex-start">상용 · NHI 제품</span>
+      <h3>Astrix · Oasis · Entro · Aembit</h3>
+      <ul><li>키·토큰·서비스 계정 인벤토리</li><li>키마다 사람 소유자 연결</li><li>소유자 불명·미사용 키 표시</li></ul>
+      <p class="take"><b>가져옴</b> 소유자 연결, 소유자 불명 표시 <br><b>안 가져옴</b> 제품 도입, 전사 자동 탐지</p>
+    </article>
+    <article class="ref">
+      <span class="pill info" style="align-self:flex-start">플랫폼 기본 통제</span>
+      <h3>GitHub PAT 정책 · GCP 키 생성 차단</h3>
+      <ul><li>GitHub fine-grained PAT 조직 정책</li><li>GCP 서비스 계정 키 생성 차단 + Workload Identity Federation</li></ul>
+      <p class="take"><b>가져옴</b> 장기 과제(단기 자격 전환)의 근거 <br><b>안 가져옴</b> 이번 과제 범위</p>
+    </article>
+    <article class="ref">
+      <span class="pill info" style="align-self:flex-start">소스 공개 제품</span>
+      <h3>HashiCorp Vault 동적 시크릿</h3>
+      <ul><li>요청 시 단기 자격 발급</li><li>만료되면 자동 폐기</li></ul>
+      <p class="take"><b>가져옴</b> 단기 자격 방향 참고 <br><b>안 가져옴</b> 발급 체계 교체</p>
+    </article>
+    <article class="ref">
+      <span class="pill info" style="align-self:flex-start">JML 자동화 도구</span>
+      <h3>Okta Workflows · Tines · Zluri</h3>
+      <ul><li>입·이·퇴사 이벤트로 작업 시작</li><li>승인·알림·기록 단계 구성</li></ul>
+      <p class="take"><b>가져옴</b> 이벤트 → 대기열 → 확인 흐름 <br><b>안 가져옴</b> 계정 프로세스(범위 밖)</p>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div><h2>2. 직접 만들 때의 흐름</h2>
+  <p class="lead">강조한 칸이 새로 만드는 부분입니다. 앞단(인사 자료)과 뒷단(각 시스템 키 조회·회수)은 기존 것을 씁니다.</p></div>
+  <div class="flow" role="list">
+    <div class="step" role="listitem"><b>HR 시스템</b>입·이·퇴사 일 배치</div><span class="arrow" aria-hidden="true">→</span>
+    <div class="step" role="listitem"><b>이벤트 판정</b>퇴사 · 이동 구분</div><span class="arrow" aria-hidden="true">→</span>
+    <div class="step key" role="listitem"><b>소유자 대응표</b>토큰 소유자 ↔ 사번 (사번 연결표 경유)</div><span class="arrow" aria-hidden="true">→</span>
+    <div class="step key" role="listitem"><b>처리 대기열</b>회수 · 이관 요청 · 수동 처리</div><span class="arrow" aria-hidden="true">→</span>
+    <div class="step key" role="listitem"><b>오회수 방지</b>건수 경고 · 기록만 하는 모드</div><span class="arrow" aria-hidden="true">→</span>
+    <div class="step" role="listitem"><b>각 시스템</b>키 회수 · 알림 · 기록</div>
+  </div>
+</section>
+
+<section>
+  <div><h2>3. 콘솔 화면 목업</h2>
+  <p class="lead">탭을 눌러 4개 화면을 볼 수 있습니다. 3번 화면의 슬라이더로 오회수 방지 동작을 직접 확인할 수 있습니다.</p></div>
+  <div class="console">
+    <div class="bar"><div class="dots"><i></i><i></i><i></i></div><span class="url">key-owner-console / 예시</span></div>
+    <div class="tabs" role="tablist" aria-label="콘솔 화면">
+      <button role="tab" aria-selected="true" aria-controls="p1" id="t1">① 소유자 대응표</button>
+      <button role="tab" aria-selected="false" aria-controls="p2" id="t2">② 퇴사·이동 처리 대기열</button>
+      <button role="tab" aria-selected="false" aria-controls="p3" id="t3">③ 오회수 방지</button>
+      <button role="tab" aria-selected="false" aria-controls="p4" id="t4">④ 정기 대조 결과</button>
+    </div>
+
+    <div class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+      <div class="cols">
+        <div class="stat"><div class="n">128</div><div class="l">조회된 키(예시)</div></div>
+        <div class="stat"><div class="n">109</div><div class="l">소유자 연결됨</div></div>
+        <div class="stat"><div class="n" style="color:var(--warn)">14</div><div class="l">소유자 불명 · 수동 처리</div></div>
+        <div class="stat"><div class="n" style="color:var(--bad)">5</div><div class="l">퇴사자 소유 · 활성</div></div>
+      </div>
+      <div class="toolbar">
+        <label for="f-status" class="foot">상태</label>
+        <select id="f-status"><option value="">전체</option><option value="연결됨">연결됨</option><option value="소유자 불명">소유자 불명</option><option value="퇴사자 소유">퇴사자 소유</option></select>
+        <label for="f-sys" class="foot">시스템</label>
+        <select id="f-sys"><option value="">전체</option><option>소스 저장소</option><option>클라우드</option><option>모니터링</option><option>메신저</option></select>
+      </div>
+      <div class="tw"><table id="keytable">
+        <thead><tr><th>시스템</th><th>키 종류</th><th>식별자(가림)</th><th>소유자(사번)</th><th>마지막 사용</th><th>상태</th></tr></thead>
+        <tbody></tbody></table></div>
+      <p class="foot">"소유자 불명" 행은 자동 처리하지 않고 담당자에게 수동 처리로 넘깁니다. 사번은 연결표로만 해석합니다(연결표 입력 경로는 확인 전).</p>
+    </div>
+
+    <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+      <div class="tw"><table>
+        <thead><tr><th>대상(사번)</th><th>이벤트</th><th>대상 키</th><th>처리 방식</th><th>상태</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">EX-1042</td><td>퇴사 (11/12 예정)</td><td>저장소 토큰 1 · 클라우드 키 1</td><td>회수(자동) · 회수 전 알림 1일</td><td><span class="pill info">예약됨</span></td></tr>
+          <tr><td class="mono">EX-2217</td><td>부서 이동</td><td>모니터링 API 키 1</td><td>이관 요청 → 새 담당자 확인</td><td><span class="pill warn">확인 대기</span></td></tr>
+          <tr><td class="mono">EX-3380</td><td>퇴사 (11/11)</td><td>소유자 불명 토큰 2</td><td>수동 처리 (담당자 지정 필요)</td><td><span class="pill bad">수동</span></td></tr>
+          <tr><td class="mono">EX-4105</td><td>입사 (11/13)</td><td>직무별 기본 키 없음</td><td>필요 시 요청 (일괄 발급 안 함)</td><td><span class="pill ok">해당 없음</span></td></tr>
+        </tbody></table></div>
+      <p class="foot">회수는 자동, 이관은 사람 확인을 거치는 요청으로 구분합니다. 재활성화 가능 여부는 확인 전이라 복구에 재발급이 필요할 수 있습니다(가정).</p>
+    </div>
+
+    <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+      <div class="row">
+        <label for="batch" style="font-weight:500">이번 배치 퇴사 판정 인원</label>
+        <input id="batch" type="range" min="0" max="120" value="63" aria-describedby="batch-out">
+        <span id="batch-out" class="mono">63명</span>
+      </div>
+      <div class="row">
+        <label for="limit">경고 기준</label>
+        <input id="limit" type="text" inputmode="numeric" value="50" size="4" style="width:70px">
+        <span class="foot">명 이상이면 경고 (예시 값, 실제 기준은 설계 단계에서 정함)</span>
+        <label style="display:flex;gap:6px;align-items:center;margin-left:auto"><input id="dry" type="checkbox"> 기록만 하는 모드</label>
+      </div>
+      <div class="guard" id="guard"></div>
+      <div class="cols">
+        <div class="stat"><div class="n" id="s-total">63</div><div class="l">이번 배치 대상</div></div>
+        <div class="stat"><div class="n" id="s-org">92%</div><div class="l">상위 한 조직 쏠림(고정 예시)</div></div>
+        <div class="stat"><div class="n" id="s-keys">0</div><div class="l">회수 예정 키</div></div>
+      </div>
+      <p class="foot">조직 단위 쏠림 검사는 입력 오류와 조직 변경이 퇴사로 오인되는 경우를 잡기 위한 장치입니다(가정). 되돌리는 경로는 키 재발급 없이 가능한지 설계 단계에서 정합니다.</p>
+    </div>
+
+    <div class="panel" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+      <div class="guard"><b>정기 대조 (주 1회, 예시)</b><span class="foot">키 소유자가 재직자 명단에 없으면 "퇴사자 소유"로 표시합니다. 명단의 정확성과 갱신 시점은 확인 전입니다.</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>시스템</th><th>대조한 키</th><th>재직자 일치</th><th>명단에 없음</th><th>소유자 불명</th></tr></thead>
+        <tbody>
+          <tr><td>소스 저장소</td><td class="mono">52</td><td class="mono">47</td><td class="mono">2</td><td class="mono">3</td></tr>
+          <tr><td>클라우드</td><td class="mono">31</td><td class="mono">27</td><td class="mono">1</td><td class="mono">3</td></tr>
+          <tr><td>모니터링</td><td class="mono">29</td><td class="mono">24</td><td class="mono">1</td><td class="mono">4</td></tr>
+          <tr><td>메신저</td><td class="mono">16</td><td class="mono">11</td><td class="mono">1</td><td class="mono">4</td></tr>
+          <tr><td><b>합계</b></td><td class="mono"><b>128</b></td><td class="mono"><b>109</b></td><td class="mono"><b>5</b></td><td class="mono"><b>14</b></td></tr>
+        </tbody></table></div>
+      <p class="foot">"명단에 없음"은 바로 회수하지 않고 처리 대기열로 보냅니다. 같은 임계값·기록 모드를 정기 대조에도 적용할지는 설계 단계의 논의 항목입니다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div><h2>4. 제품 기능과 우리 화면의 대응</h2></div>
+  <div class="tw"><table class="map">
+    <thead><tr><th>레퍼런스 기능</th><th>목업 화면</th><th>범위</th></tr></thead>
+    <tbody>
+      <tr><td>키마다 사람 소유자 연결</td><td>① 소유자 대응표</td><td>1단계(파일럿)</td></tr>
+      <tr><td>소유자 불명 키 표시</td><td>① 상태 · ② 수동 처리</td><td>1단계(파일럿)</td></tr>
+      <tr><td>입·이·퇴사 이벤트 기반 처리</td><td>② 처리 대기열</td><td>1단계(파일럿)</td></tr>
+      <tr><td>오삭제 방지 장치</td><td>③ 오회수 방지</td><td>1단계(파일럿)</td></tr>
+      <tr><td>정기 점검</td><td>④ 정기 대조 결과</td><td>기본 범위</td></tr>
+      <tr><td>미사용 키 탐지 · 소유자 이력 추적</td><td>목업에 넣지 않음</td><td>2단계 후보(가정, 조사 후 결정)</td></tr>
+      <tr><td>단기 자격 전환(Vault·WIF)</td><td>목업에 넣지 않음</td><td>장기 과제</td></tr>
+    </tbody></table></div>
+  <p class="foot">범위 구분은 단계별 계획 기준입니다. 확장하면 사전 목록 범위가 넓어지므로 파일럿 측정 후 범위를 다시 봅니다.</p>
+</section>
+</div>
+
+<script>
+(function(){
+  var rows=[
+    ["소스 저장소","fine-grained PAT","key_…a91f","EX-1042","어제","연결됨"],
+    ["소스 저장소","fine-grained PAT","key_…c03d","EX-3380","41일 전","퇴사자 소유"],
+    ["소스 저장소","deploy key","key_…77e2","소유자 불명","9일 전","소유자 불명"],
+    ["클라우드","access key","key_…Q4ZB","EX-2217","오늘","연결됨"],
+    ["클라우드","access key","key_…M18T","EX-3380","63일 전","퇴사자 소유"],
+    ["클라우드","access key","key_…B20X","소유자 불명","120일 전","소유자 불명"],
+    ["모니터링","API key","key_…5c10","EX-2217","오늘","연결됨"],
+    ["모니터링","앱 키","key_…e842","EX-4105","3일 전","연결됨"],
+    ["모니터링","API key","key_…0aa9","소유자 불명","210일 전","소유자 불명"],
+    ["메신저","bot token","key_…d1","EX-1042","오늘","연결됨"],
+    ["메신저","user token","key_…8f","EX-3380","30일 전","퇴사자 소유"]
+  ];
+  var pillClass={"연결됨":"ok","소유자 불명":"warn","퇴사자 소유":"bad"};
+  var tbody=document.querySelector("#keytable tbody");
+  var fs=document.getElementById("f-status"),fy=document.getElementById("f-sys");
+  function renderKeys(){
+    tbody.innerHTML="";
+    rows.filter(function(r){return (!fs.value||r[5]===fs.value)&&(!fy.value||r[0]===fy.value)}).forEach(function(r){
+      var tr=document.createElement("tr");
+      r.forEach(function(v,i){
+        var td=document.createElement("td");
+        if(i===5){var s=document.createElement("span");s.className="pill "+pillClass[v];s.textContent=v;td.appendChild(s)}
+        else if(i===2||i===3){td.className="mono";td.textContent=v}
+        else td.textContent=v;
+        tr.appendChild(td)});
+      tbody.appendChild(tr)});
+  }
+  fs.addEventListener("change",renderKeys);fy.addEventListener("change",renderKeys);renderKeys();
+
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function show(t){tabs.forEach(function(b){
+    var on=b===t;b.setAttribute("aria-selected",on);
+    document.getElementById(b.getAttribute("aria-controls")).hidden=!on})}
+  tabs.forEach(function(b){b.addEventListener("click",function(){show(b)})});
+
+  var batch=document.getElementById("batch"),limit=document.getElementById("limit"),dry=document.getElementById("dry");
+  var guard=document.getElementById("guard");
+  function renderGuard(){
+    var n=+batch.value,lim=parseInt(limit.value,10);if(isNaN(lim))lim=50;
+    document.getElementById("batch-out").textContent=n+"명";
+    document.getElementById("s-total").textContent=n;
+    document.getElementById("s-keys").textContent=dry.checked?0:Math.round(n*1.7);
+    guard.className="guard "+(n>=lim?"stop":"go");
+    var html;
+    if(n>=lim){
+      html="<b>일괄 보류: "+n+"명이 기준 "+lim+"명 이상입니다</b><span>자동 회수를 멈추고 담당자 확인을 요청합니다. 인사 자료 입력 오류나 조직 변경일 수 있어 사유를 먼저 확인합니다.</span>"
+        +'<div class="row"><button class="btn" type="button" id="b-approve">담당자 확인 후 진행(가정)</button><button class="btn ghost" type="button" id="b-hold">전체 보류 유지(가정)</button></div>';
+    }else{
+      html="<b>정상 범위: "+n+"명 (기준 "+lim+"명 미만)</b><span>"+(dry.checked?"기록만 하는 모드라 실제 회수는 하지 않고 대상 목록만 남깁니다.":"예약된 시간에 자동 회수합니다. 회수 전 알림은 1일 전에 나갑니다.")+"</span>";
+    }
+    guard.innerHTML=html;
+    var a=document.getElementById("b-approve"),h=document.getElementById("b-hold");
+    if(a)a.addEventListener("click",function(){guard.className="guard go";guard.innerHTML="<b>담당자 확인 완료(예시)</b><span>이 화면은 목업이라 실제로는 아무것도 회수하지 않습니다.</span>"});
+    if(h)h.addEventListener("click",function(){guard.innerHTML="<b>전체 보류 유지</b><span>다음 배치에서 다시 판정합니다(예시).</span>"});
+  }
+  batch.addEventListener("input",renderGuard);limit.addEventListener("input",renderGuard);dry.addEventListener("change",renderGuard);renderGuard();
+})();
+</script>
+</body>
+</html>
